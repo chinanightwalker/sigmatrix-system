@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.Activity" >
+    <id column="_activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="_type" property="type" jdbcType="INTEGER" />
+    <result column="_is_integral" property="isIntegral" jdbcType="INTEGER" />
+    <result column="_is_area" property="isArea" jdbcType="INTEGER" />
+    <result column="_is_open" property="isOpen" jdbcType="INTEGER" />
+    <result column="_activity_img_url" property="activityImgUrl" jdbcType="VARCHAR" />
+    <result column="_activity_title" property="activityTitle" jdbcType="VARCHAR" />
+    <result column="_start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="_end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="_award_end_date" property="awardEndDate" jdbcType="TIMESTAMP" />
+    <result column="_is_force_collect" property="isForceCollect" jdbcType="INTEGER" />
+    <result column="_use_Integral" property="useIntegral" jdbcType="INTEGER" />
+    <result column="_activity_role" property="activityRole" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="_unprize_integration" property="unprizeIntegration" jdbcType="INTEGER" />
+    <result column="_scan_count" property="scanCount" jdbcType="INTEGER" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_name" property="name" jdbcType="VARCHAR" />
+    <result column="_comments" property="comments" jdbcType="VARCHAR" />
+    <result column="_template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="_pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="_pic_path" property="picPath" jdbcType="VARCHAR" />
+    <result column="_user_day_max_prize_count" property="userDayMaxPrizeCount" jdbcType="INTEGER" />
+    <result column="_user_max_prize_process_type" property="userMaxPrizeProcessType" jdbcType="INTEGER" />
+    <result column="_unactivite_process_type" property="unactiviteProcessType" jdbcType="INTEGER" />
+    <result column="_valid_date_type" property="validDateType" jdbcType="INTEGER" />
+    <result column="_first_prize_id" property="firstPrizeId" jdbcType="INTEGER" />
+    <result column="_account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="_estimate_num" property="estimateNum" jdbcType="INTEGER" />
+    <result column="_step" property="step" jdbcType="INTEGER" />
+    <result column="_bind_status" property="bindStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _activity_id, _type, _is_integral, _is_area, _is_open, _activity_img_url, _activity_title, 
+    _start_date, _end_date, _award_end_date, _is_force_collect, _use_Integral, _activity_role, 
+    _create_time, _update_time, _unprize_integration, _scan_count, _status, _name, _comments, 
+    _template_id, _pic_url, _pic_path, _user_day_max_prize_count, _user_max_prize_process_type, 
+    _unactivite_process_type, _valid_date_type, _first_prize_id, _account_id, _estimate_num, 
+    _step, _bind_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.ActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_activity
+    where _activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_activity
+    where _activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.ActivityExample" >
+    delete from ${tablePrefix}_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="activityId" parameterType="com.sigmatrix.sc.entity.v1.Activity" >
+    insert into ${tablePrefix}_activity (_activity_id, _type, _is_integral, 
+      _is_area, _is_open, _activity_img_url, 
+      _activity_title, _start_date, _end_date, 
+      _award_end_date, _is_force_collect, _use_Integral, 
+      _activity_role, _create_time, _update_time, 
+      _unprize_integration, _scan_count, _status, 
+      _name, _comments, _template_id, 
+      _pic_url, _pic_path, _user_day_max_prize_count, 
+      _user_max_prize_process_type, _unactivite_process_type, 
+      _valid_date_type, _first_prize_id, _account_id, 
+      _estimate_num, _step, _bind_status
+      )
+    values (#{activityId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{isIntegral,jdbcType=INTEGER}, 
+      #{isArea,jdbcType=INTEGER}, #{isOpen,jdbcType=INTEGER}, #{activityImgUrl,jdbcType=VARCHAR}, 
+      #{activityTitle,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{awardEndDate,jdbcType=TIMESTAMP}, #{isForceCollect,jdbcType=INTEGER}, #{useIntegral,jdbcType=INTEGER}, 
+      #{activityRole,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{unprizeIntegration,jdbcType=INTEGER}, #{scanCount,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, 
+      #{picUrl,jdbcType=VARCHAR}, #{picPath,jdbcType=VARCHAR}, #{userDayMaxPrizeCount,jdbcType=INTEGER}, 
+      #{userMaxPrizeProcessType,jdbcType=INTEGER}, #{unactiviteProcessType,jdbcType=INTEGER}, 
+      #{validDateType,jdbcType=INTEGER}, #{firstPrizeId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, 
+      #{estimateNum,jdbcType=INTEGER}, #{step,jdbcType=INTEGER}, #{bindStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="activityId" parameterType="com.sigmatrix.sc.entity.v1.Activity" >
+    insert into ${tablePrefix}_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        _activity_id,
+      </if>
+      <if test="type != null" >
+        _type,
+      </if>
+      <if test="isIntegral != null" >
+        _is_integral,
+      </if>
+      <if test="isArea != null" >
+        _is_area,
+      </if>
+      <if test="isOpen != null" >
+        _is_open,
+      </if>
+      <if test="activityImgUrl != null" >
+        _activity_img_url,
+      </if>
+      <if test="activityTitle != null" >
+        _activity_title,
+      </if>
+      <if test="startDate != null" >
+        _start_date,
+      </if>
+      <if test="endDate != null" >
+        _end_date,
+      </if>
+      <if test="awardEndDate != null" >
+        _award_end_date,
+      </if>
+      <if test="isForceCollect != null" >
+        _is_force_collect,
+      </if>
+      <if test="useIntegral != null" >
+        _use_Integral,
+      </if>
+      <if test="activityRole != null" >
+        _activity_role,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+      <if test="unprizeIntegration != null" >
+        _unprize_integration,
+      </if>
+      <if test="scanCount != null" >
+        _scan_count,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="name != null" >
+        _name,
+      </if>
+      <if test="comments != null" >
+        _comments,
+      </if>
+      <if test="templateId != null" >
+        _template_id,
+      </if>
+      <if test="picUrl != null" >
+        _pic_url,
+      </if>
+      <if test="picPath != null" >
+        _pic_path,
+      </if>
+      <if test="userDayMaxPrizeCount != null" >
+        _user_day_max_prize_count,
+      </if>
+      <if test="userMaxPrizeProcessType != null" >
+        _user_max_prize_process_type,
+      </if>
+      <if test="unactiviteProcessType != null" >
+        _unactivite_process_type,
+      </if>
+      <if test="validDateType != null" >
+        _valid_date_type,
+      </if>
+      <if test="firstPrizeId != null" >
+        _first_prize_id,
+      </if>
+      <if test="accountId != null" >
+        _account_id,
+      </if>
+      <if test="estimateNum != null" >
+        _estimate_num,
+      </if>
+      <if test="step != null" >
+        _step,
+      </if>
+      <if test="bindStatus != null" >
+        _bind_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isIntegral != null" >
+        #{isIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="isArea != null" >
+        #{isArea,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null" >
+        #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="activityImgUrl != null" >
+        #{activityImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTitle != null" >
+        #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardEndDate != null" >
+        #{awardEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isForceCollect != null" >
+        #{isForceCollect,jdbcType=INTEGER},
+      </if>
+      <if test="useIntegral != null" >
+        #{useIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="activityRole != null" >
+        #{activityRole,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unprizeIntegration != null" >
+        #{unprizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="scanCount != null" >
+        #{scanCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="userDayMaxPrizeCount != null" >
+        #{userDayMaxPrizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="userMaxPrizeProcessType != null" >
+        #{userMaxPrizeProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="unactiviteProcessType != null" >
+        #{unactiviteProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="validDateType != null" >
+        #{validDateType,jdbcType=INTEGER},
+      </if>
+      <if test="firstPrizeId != null" >
+        #{firstPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="estimateNum != null" >
+        #{estimateNum,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="bindStatus != null" >
+        #{bindStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.ActivityExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_activity
+    <set >
+      <if test="record.activityId != null" >
+        _activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        _type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.isIntegral != null" >
+        _is_integral = #{record.isIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.isArea != null" >
+        _is_area = #{record.isArea,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOpen != null" >
+        _is_open = #{record.isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityImgUrl != null" >
+        _activity_img_url = #{record.activityImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityTitle != null" >
+        _activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null" >
+        _start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endDate != null" >
+        _end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.awardEndDate != null" >
+        _award_end_date = #{record.awardEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isForceCollect != null" >
+        _is_force_collect = #{record.isForceCollect,jdbcType=INTEGER},
+      </if>
+      <if test="record.useIntegral != null" >
+        _use_Integral = #{record.useIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityRole != null" >
+        _activity_role = #{record.activityRole,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.unprizeIntegration != null" >
+        _unprize_integration = #{record.unprizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanCount != null" >
+        _scan_count = #{record.scanCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        _name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comments != null" >
+        _comments = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templateId != null" >
+        _template_id = #{record.templateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.picUrl != null" >
+        _pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picPath != null" >
+        _pic_path = #{record.picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userDayMaxPrizeCount != null" >
+        _user_day_max_prize_count = #{record.userDayMaxPrizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.userMaxPrizeProcessType != null" >
+        _user_max_prize_process_type = #{record.userMaxPrizeProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="record.unactiviteProcessType != null" >
+        _unactivite_process_type = #{record.unactiviteProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="record.validDateType != null" >
+        _valid_date_type = #{record.validDateType,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstPrizeId != null" >
+        _first_prize_id = #{record.firstPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountId != null" >
+        _account_id = #{record.accountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.estimateNum != null" >
+        _estimate_num = #{record.estimateNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.step != null" >
+        _step = #{record.step,jdbcType=INTEGER},
+      </if>
+      <if test="record.bindStatus != null" >
+        _bind_status = #{record.bindStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_activity
+    set _activity_id = #{record.activityId,jdbcType=INTEGER},
+      _type = #{record.type,jdbcType=INTEGER},
+      _is_integral = #{record.isIntegral,jdbcType=INTEGER},
+      _is_area = #{record.isArea,jdbcType=INTEGER},
+      _is_open = #{record.isOpen,jdbcType=INTEGER},
+      _activity_img_url = #{record.activityImgUrl,jdbcType=VARCHAR},
+      _activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+      _start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      _end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      _award_end_date = #{record.awardEndDate,jdbcType=TIMESTAMP},
+      _is_force_collect = #{record.isForceCollect,jdbcType=INTEGER},
+      _use_Integral = #{record.useIntegral,jdbcType=INTEGER},
+      _activity_role = #{record.activityRole,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      _unprize_integration = #{record.unprizeIntegration,jdbcType=INTEGER},
+      _scan_count = #{record.scanCount,jdbcType=INTEGER},
+      _status = #{record.status,jdbcType=INTEGER},
+      _name = #{record.name,jdbcType=VARCHAR},
+      _comments = #{record.comments,jdbcType=VARCHAR},
+      _template_id = #{record.templateId,jdbcType=INTEGER},
+      _pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      _pic_path = #{record.picPath,jdbcType=VARCHAR},
+      _user_day_max_prize_count = #{record.userDayMaxPrizeCount,jdbcType=INTEGER},
+      _user_max_prize_process_type = #{record.userMaxPrizeProcessType,jdbcType=INTEGER},
+      _unactivite_process_type = #{record.unactiviteProcessType,jdbcType=INTEGER},
+      _valid_date_type = #{record.validDateType,jdbcType=INTEGER},
+      _first_prize_id = #{record.firstPrizeId,jdbcType=INTEGER},
+      _account_id = #{record.accountId,jdbcType=INTEGER},
+      _estimate_num = #{record.estimateNum,jdbcType=INTEGER},
+      _step = #{record.step,jdbcType=INTEGER},
+      _bind_status = #{record.bindStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <!-- 更新活动首次中奖奖项,updateByPrimaryKeySelective不能更新成null的,故只能有此方法 -->
+  <update id="updateActivityFirstPrizeId" parameterType="map">
+  	update ${tablePrefix}_activity set _first_prize_id = #{firstPrizeId,jdbcType=INTEGER} 
+  	where _activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.Activity" >
+    update ${tablePrefix}_activity
+    <set >
+      <if test="type != null" >
+        _type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isIntegral != null" >
+        _is_integral = #{isIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="isArea != null" >
+        _is_area = #{isArea,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null" >
+        _is_open = #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="activityImgUrl != null" >
+        _activity_img_url = #{activityImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTitle != null" >
+        _activity_title = #{activityTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        _start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        _end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="awardEndDate != null" >
+        _award_end_date = #{awardEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isForceCollect != null" >
+        _is_force_collect = #{isForceCollect,jdbcType=INTEGER},
+      </if>
+      <if test="useIntegral != null" >
+        _use_Integral = #{useIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="activityRole != null" >
+        _activity_role = #{activityRole,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unprizeIntegration != null" >
+        _unprize_integration = #{unprizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="scanCount != null" >
+        _scan_count = #{scanCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        _name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null" >
+        _comments = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        _template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null" >
+        _pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        _pic_path = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="userDayMaxPrizeCount != null" >
+        _user_day_max_prize_count = #{userDayMaxPrizeCount,jdbcType=INTEGER},
+      </if>
+      <if test="userMaxPrizeProcessType != null" >
+        _user_max_prize_process_type = #{userMaxPrizeProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="unactiviteProcessType != null" >
+        _unactivite_process_type = #{unactiviteProcessType,jdbcType=INTEGER},
+      </if>
+      <if test="validDateType != null" >
+        _valid_date_type = #{validDateType,jdbcType=INTEGER},
+      </if>
+      <if test="firstPrizeId != null" >
+        _first_prize_id = #{firstPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        _account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="estimateNum != null" >
+        _estimate_num = #{estimateNum,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        _step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="bindStatus != null" >
+        _bind_status = #{bindStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where _activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.Activity" >
+    update ${tablePrefix}_activity
+    set _type = #{type,jdbcType=INTEGER},
+      _is_integral = #{isIntegral,jdbcType=INTEGER},
+      _is_area = #{isArea,jdbcType=INTEGER},
+      _is_open = #{isOpen,jdbcType=INTEGER},
+      _activity_img_url = #{activityImgUrl,jdbcType=VARCHAR},
+      _activity_title = #{activityTitle,jdbcType=VARCHAR},
+      _start_date = #{startDate,jdbcType=TIMESTAMP},
+      _end_date = #{endDate,jdbcType=TIMESTAMP},
+      _award_end_date = #{awardEndDate,jdbcType=TIMESTAMP},
+      _is_force_collect = #{isForceCollect,jdbcType=INTEGER},
+      _use_Integral = #{useIntegral,jdbcType=INTEGER},
+      _activity_role = #{activityRole,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      _unprize_integration = #{unprizeIntegration,jdbcType=INTEGER},
+      _scan_count = #{scanCount,jdbcType=INTEGER},
+      _status = #{status,jdbcType=INTEGER},
+      _name = #{name,jdbcType=VARCHAR},
+      _comments = #{comments,jdbcType=VARCHAR},
+      _template_id = #{templateId,jdbcType=INTEGER},
+      _pic_url = #{picUrl,jdbcType=VARCHAR},
+      _pic_path = #{picPath,jdbcType=VARCHAR},
+      _user_day_max_prize_count = #{userDayMaxPrizeCount,jdbcType=INTEGER},
+      _user_max_prize_process_type = #{userMaxPrizeProcessType,jdbcType=INTEGER},
+      _unactivite_process_type = #{unactiviteProcessType,jdbcType=INTEGER},
+      _valid_date_type = #{validDateType,jdbcType=INTEGER},
+      _first_prize_id = #{firstPrizeId,jdbcType=INTEGER},
+      _account_id = #{accountId,jdbcType=INTEGER},
+      _estimate_num = #{estimateNum,jdbcType=INTEGER},
+      _step = #{step,jdbcType=INTEGER},
+      _bind_status = #{bindStatus,jdbcType=INTEGER}
+    where _activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>

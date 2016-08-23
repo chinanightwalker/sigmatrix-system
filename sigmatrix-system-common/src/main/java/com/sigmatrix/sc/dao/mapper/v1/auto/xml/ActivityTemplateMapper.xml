@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.ActivityTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.ActivityTemplate" >
+    <id column="_template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="_template_name" property="templateName" jdbcType="VARCHAR" />
+    <result column="_template_path" property="templatePath" jdbcType="VARCHAR" />
+    <result column="_template_real_path" property="templateRealPath" jdbcType="VARCHAR" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="_create_userid" property="createUserid" jdbcType="INTEGER" />
+    <result column="_update_userid" property="updateUserid" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _template_id, _template_name, _template_path, _template_real_path, _create_time, 
+    _update_time, _create_userid, _update_userid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_activity_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_activity_template
+    where _template_id = #{templateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_activity_template
+    where _template_id = #{templateId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplateExample" >
+    delete from ${tablePrefix}_activity_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplate" >
+    insert into ${tablePrefix}_activity_template (_template_id, _template_name, _template_path, 
+      _template_real_path, _create_time, _update_time, 
+      _create_userid, _update_userid)
+    values (#{templateId,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR}, #{templatePath,jdbcType=VARCHAR}, 
+      #{templateRealPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUserid,jdbcType=INTEGER}, #{updateUserid,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplate" >
+    insert into ${tablePrefix}_activity_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        _template_id,
+      </if>
+      <if test="templateName != null" >
+        _template_name,
+      </if>
+      <if test="templatePath != null" >
+        _template_path,
+      </if>
+      <if test="templateRealPath != null" >
+        _template_real_path,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+      <if test="createUserid != null" >
+        _create_userid,
+      </if>
+      <if test="updateUserid != null" >
+        _update_userid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="templateName != null" >
+        #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePath != null" >
+        #{templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="templateRealPath != null" >
+        #{templateRealPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserid != null" >
+        #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserid != null" >
+        #{updateUserid,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplateExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_activity_template
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_activity_template
+    <set >
+      <if test="record.templateId != null" >
+        _template_id = #{record.templateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.templateName != null" >
+        _template_name = #{record.templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templatePath != null" >
+        _template_path = #{record.templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templateRealPath != null" >
+        _template_real_path = #{record.templateRealPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserid != null" >
+        _create_userid = #{record.createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateUserid != null" >
+        _update_userid = #{record.updateUserid,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_activity_template
+    set _template_id = #{record.templateId,jdbcType=INTEGER},
+      _template_name = #{record.templateName,jdbcType=VARCHAR},
+      _template_path = #{record.templatePath,jdbcType=VARCHAR},
+      _template_real_path = #{record.templateRealPath,jdbcType=VARCHAR},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      _create_userid = #{record.createUserid,jdbcType=INTEGER},
+      _update_userid = #{record.updateUserid,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplate" >
+    update ${tablePrefix}_activity_template
+    <set >
+      <if test="templateName != null" >
+        _template_name = #{templateName,jdbcType=VARCHAR},
+      </if>
+      <if test="templatePath != null" >
+        _template_path = #{templatePath,jdbcType=VARCHAR},
+      </if>
+      <if test="templateRealPath != null" >
+        _template_real_path = #{templateRealPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserid != null" >
+        _create_userid = #{createUserid,jdbcType=INTEGER},
+      </if>
+      <if test="updateUserid != null" >
+        _update_userid = #{updateUserid,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _template_id = #{templateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.ActivityTemplate" >
+    update ${tablePrefix}_activity_template
+    set _template_name = #{templateName,jdbcType=VARCHAR},
+      _template_path = #{templatePath,jdbcType=VARCHAR},
+      _template_real_path = #{templateRealPath,jdbcType=VARCHAR},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      _create_userid = #{createUserid,jdbcType=INTEGER},
+      _update_userid = #{updateUserid,jdbcType=TIMESTAMP}
+    where _template_id = #{templateId,jdbcType=INTEGER}
+  </update>
+</mapper>

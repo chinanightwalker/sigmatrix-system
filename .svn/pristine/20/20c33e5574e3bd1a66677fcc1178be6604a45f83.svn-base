@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.ScancodeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.ScancodeLog" >
+    <id column="_id" property="id" jdbcType="VARCHAR" />
+    <result column="_barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="_product_id" property="productId" jdbcType="INTEGER" />
+    <result column="_scan_time" property="scanTime" jdbcType="TIMESTAMP" />
+    <result column="_lng" property="lng" jdbcType="VARCHAR" />
+    <result column="_lat" property="lat" jdbcType="VARCHAR" />
+    <result column="_type" property="type" jdbcType="INTEGER" />
+    <result column="_openid" property="openid" jdbcType="VARCHAR" />
+    <result column="_client_type" property="clientType" jdbcType="VARCHAR" />
+    <result column="_ip_address" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="_phone" property="phone" jdbcType="VARCHAR" />
+    <result column="_lat_lng_address" property="latLngAddress" jdbcType="VARCHAR" />
+    <result column="_ip_location" property="ipLocation" jdbcType="VARCHAR" />
+    <result column="_phone_address" property="phoneAddress" jdbcType="VARCHAR" />
+    <result column="_code_status" property="codeStatus" jdbcType="INTEGER" />
+    <result column="_is_first" property="isFirst" jdbcType="INTEGER" />
+    <result column="_activity_id" property="activityId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, _barcode, _product_id, _scan_time, _lng, _lat, _type, _openid, _client_type, 
+    _ip_address, _phone, _lat_lng_address, _ip_location, _phone_address, _code_status, 
+    _is_first, _activity_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_scancode_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_scancode_log
+    where _id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_scancode_log
+    where _id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLogExample" >
+    delete from ${tablePrefix}_scancode_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLog" >
+    insert into ${tablePrefix}_scancode_log (_id, _barcode, _product_id, 
+      _scan_time, _lng, _lat, 
+      _type, _openid, _client_type, 
+      _ip_address, _phone, _lat_lng_address, 
+      _ip_location, _phone_address, _code_status, 
+      _is_first, _activity_id)
+    values (#{id,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{scanTime,jdbcType=TIMESTAMP}, #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{clientType,jdbcType=VARCHAR}, 
+      #{ipAddress,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{latLngAddress,jdbcType=VARCHAR}, 
+      #{ipLocation,jdbcType=VARCHAR}, #{phoneAddress,jdbcType=VARCHAR}, #{codeStatus,jdbcType=INTEGER}, 
+      #{isFirst,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLog" >
+    insert into ${tablePrefix}_scancode_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="barcode != null" >
+        _barcode,
+      </if>
+      <if test="productId != null" >
+        _product_id,
+      </if>
+      <if test="scanTime != null" >
+        _scan_time,
+      </if>
+      <if test="lng != null" >
+        _lng,
+      </if>
+      <if test="lat != null" >
+        _lat,
+      </if>
+      <if test="type != null" >
+        _type,
+      </if>
+      <if test="openid != null" >
+        _openid,
+      </if>
+      <if test="clientType != null" >
+        _client_type,
+      </if>
+      <if test="ipAddress != null" >
+        _ip_address,
+      </if>
+      <if test="phone != null" >
+        _phone,
+      </if>
+      <if test="latLngAddress != null" >
+        _lat_lng_address,
+      </if>
+      <if test="ipLocation != null" >
+        _ip_location,
+      </if>
+      <if test="phoneAddress != null" >
+        _phone_address,
+      </if>
+      <if test="codeStatus != null" >
+        _code_status,
+      </if>
+      <if test="isFirst != null" >
+        _is_first,
+      </if>
+      <if test="activityId != null" >
+        _activity_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="scanTime != null" >
+        #{scanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="latLngAddress != null" >
+        #{latLngAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipLocation != null" >
+        #{ipLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneAddress != null" >
+        #{phoneAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null" >
+        #{codeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isFirst != null" >
+        #{isFirst,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLogExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_scancode_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_scancode_log
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barcode != null" >
+        _barcode = #{record.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null" >
+        _product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanTime != null" >
+        _scan_time = #{record.scanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lng != null" >
+        _lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lat != null" >
+        _lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        _type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.openid != null" >
+        _openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientType != null" >
+        _client_type = #{record.clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipAddress != null" >
+        _ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        _phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latLngAddress != null" >
+        _lat_lng_address = #{record.latLngAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipLocation != null" >
+        _ip_location = #{record.ipLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneAddress != null" >
+        _phone_address = #{record.phoneAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codeStatus != null" >
+        _code_status = #{record.codeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.isFirst != null" >
+        _is_first = #{record.isFirst,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        _activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_scancode_log
+    set _id = #{record.id,jdbcType=VARCHAR},
+      _barcode = #{record.barcode,jdbcType=VARCHAR},
+      _product_id = #{record.productId,jdbcType=INTEGER},
+      _scan_time = #{record.scanTime,jdbcType=TIMESTAMP},
+      _lng = #{record.lng,jdbcType=VARCHAR},
+      _lat = #{record.lat,jdbcType=VARCHAR},
+      _type = #{record.type,jdbcType=INTEGER},
+      _openid = #{record.openid,jdbcType=VARCHAR},
+      _client_type = #{record.clientType,jdbcType=VARCHAR},
+      _ip_address = #{record.ipAddress,jdbcType=VARCHAR},
+      _phone = #{record.phone,jdbcType=VARCHAR},
+      _lat_lng_address = #{record.latLngAddress,jdbcType=VARCHAR},
+      _ip_location = #{record.ipLocation,jdbcType=VARCHAR},
+      _phone_address = #{record.phoneAddress,jdbcType=VARCHAR},
+      _code_status = #{record.codeStatus,jdbcType=INTEGER},
+      _is_first = #{record.isFirst,jdbcType=INTEGER},
+      _activity_id = #{record.activityId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLog" >
+    update ${tablePrefix}_scancode_log
+    <set >
+      <if test="barcode != null" >
+        _barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        _product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="scanTime != null" >
+        _scan_time = #{scanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lng != null" >
+        _lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null" >
+        _lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        _type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        _openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="clientType != null" >
+        _client_type = #{clientType,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        _ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        _phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="latLngAddress != null" >
+        _lat_lng_address = #{latLngAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipLocation != null" >
+        _ip_location = #{ipLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneAddress != null" >
+        _phone_address = #{phoneAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null" >
+        _code_status = #{codeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isFirst != null" >
+        _is_first = #{isFirst,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        _activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.ScancodeLog" >
+    update ${tablePrefix}_scancode_log
+    set _barcode = #{barcode,jdbcType=VARCHAR},
+      _product_id = #{productId,jdbcType=INTEGER},
+      _scan_time = #{scanTime,jdbcType=TIMESTAMP},
+      _lng = #{lng,jdbcType=VARCHAR},
+      _lat = #{lat,jdbcType=VARCHAR},
+      _type = #{type,jdbcType=INTEGER},
+      _openid = #{openid,jdbcType=VARCHAR},
+      _client_type = #{clientType,jdbcType=VARCHAR},
+      _ip_address = #{ipAddress,jdbcType=VARCHAR},
+      _phone = #{phone,jdbcType=VARCHAR},
+      _lat_lng_address = #{latLngAddress,jdbcType=VARCHAR},
+      _ip_location = #{ipLocation,jdbcType=VARCHAR},
+      _phone_address = #{phoneAddress,jdbcType=VARCHAR},
+      _code_status = #{codeStatus,jdbcType=INTEGER},
+      _is_first = #{isFirst,jdbcType=INTEGER},
+      _activity_id = #{activityId,jdbcType=INTEGER}
+    where _id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

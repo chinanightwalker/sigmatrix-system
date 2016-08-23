@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.manual.ActivityManualMapper">
+
+	<update id="updateActivityScanCount1" parameterType="com.sigmatrix.sc.entity.v1.Activity">
+	   	update _activity set 
+		_scan_count = _scan_count+#{scanCount},
+		_update_time = #{updateTime}
+		where _activity_id = #{activityId};
+   </update>
+
+   <update id="updateActivityScanCount2">
+		update _activity set 
+		_scan_count = _scan_count+#{scanCount},
+		_update_time = #{updateTime}
+		where _activity_id = #{activityId};
+   </update>
+</mapper>

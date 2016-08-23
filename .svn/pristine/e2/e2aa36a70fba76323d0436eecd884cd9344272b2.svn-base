@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.manual.ActivityPrizeManualMapper">
+
+   <update id="updateActivityPrize1" parameterType="com.sigmatrix.sc.entity.v1.ActivityPrize">
+	   update _activity_prize set 
+	   _lucky_count =  _lucky_count+#{luckyCount}, 
+	   _prize_lucky_amount = _prize_lucky_amount+#{prizeLuckyAmount},
+	   _update_time = #{updateTime}
+	   where _prize_id = #{prizeId};
+   </update>
+   <update id="updateActivityPrize2">
+		update _activity_prize set 
+		_lucky_count = _lucky_count+#{luckyCount},
+		_prize_lucky_amount = _prize_lucky_amount+#{prizeLuckyAmount},
+		_update_time = #{updateTime}
+		where _prize_id = #{prizeId};
+   </update>
+</mapper>

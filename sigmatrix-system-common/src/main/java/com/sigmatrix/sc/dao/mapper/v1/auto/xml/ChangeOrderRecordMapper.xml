@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.ChangeOrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.ChangeOrderRecord" >
+    <id column="_pay_id" property="payId" jdbcType="VARCHAR" />
+    <result column="_change_order_id" property="changeOrderId" jdbcType="VARCHAR" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_change_platform_order_id" property="changePlatformOrderId" jdbcType="VARCHAR" />
+    <result column="_result_code" property="resultCode" jdbcType="VARCHAR" />
+    <result column="_result_msg" property="resultMsg" jdbcType="VARCHAR" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _pay_id, _change_order_id, _status, _change_platform_order_id, _result_code, _result_msg, 
+    _create_time, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_change_order_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_change_order_record
+    where _pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_change_order_record
+    where _pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecordExample" >
+    delete from ${tablePrefix}_change_order_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecord" >
+    insert into ${tablePrefix}_change_order_record (_pay_id, _change_order_id, _status, 
+      _change_platform_order_id, _result_code, _result_msg, 
+      _create_time, _update_time)
+    values (#{payId,jdbcType=VARCHAR}, #{changeOrderId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{changePlatformOrderId,jdbcType=VARCHAR}, #{resultCode,jdbcType=VARCHAR}, #{resultMsg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecord" >
+    insert into ${tablePrefix}_change_order_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        _pay_id,
+      </if>
+      <if test="changeOrderId != null" >
+        _change_order_id,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="changePlatformOrderId != null" >
+        _change_platform_order_id,
+      </if>
+      <if test="resultCode != null" >
+        _result_code,
+      </if>
+      <if test="resultMsg != null" >
+        _result_msg,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payId != null" >
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeOrderId != null" >
+        #{changeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="changePlatformOrderId != null" >
+        #{changePlatformOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null" >
+        #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecordExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_change_order_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_change_order_record
+    <set >
+      <if test="record.payId != null" >
+        _pay_id = #{record.payId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeOrderId != null" >
+        _change_order_id = #{record.changeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.changePlatformOrderId != null" >
+        _change_platform_order_id = #{record.changePlatformOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultCode != null" >
+        _result_code = #{record.resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultMsg != null" >
+        _result_msg = #{record.resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_change_order_record
+    set _pay_id = #{record.payId,jdbcType=VARCHAR},
+      _change_order_id = #{record.changeOrderId,jdbcType=VARCHAR},
+      _status = #{record.status,jdbcType=INTEGER},
+      _change_platform_order_id = #{record.changePlatformOrderId,jdbcType=VARCHAR},
+      _result_code = #{record.resultCode,jdbcType=VARCHAR},
+      _result_msg = #{record.resultMsg,jdbcType=VARCHAR},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecord" >
+    update ${tablePrefix}_change_order_record
+    <set >
+      <if test="changeOrderId != null" >
+        _change_order_id = #{changeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="changePlatformOrderId != null" >
+        _change_platform_order_id = #{changePlatformOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null" >
+        _result_code = #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null" >
+        _result_msg = #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.ChangeOrderRecord" >
+    update ${tablePrefix}_change_order_record
+    set _change_order_id = #{changeOrderId,jdbcType=VARCHAR},
+      _status = #{status,jdbcType=INTEGER},
+      _change_platform_order_id = #{changePlatformOrderId,jdbcType=VARCHAR},
+      _result_code = #{resultCode,jdbcType=VARCHAR},
+      _result_msg = #{resultMsg,jdbcType=VARCHAR},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+</mapper>

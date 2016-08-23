@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.UserScanCodeTimePrizeMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrize" >
+    <id column="_scan_time_prize_id" property="scanTimePrizeId" jdbcType="INTEGER" />
+    <result column="_scan_time_prize_name" property="scanTimePrizeName" jdbcType="VARCHAR" />
+    <result column="_use_scan_time" property="useScanTime" jdbcType="INTEGER" />
+    <result column="_scan_time_prize_type" property="scanTimePrizeType" jdbcType="INTEGER" />
+    <result column="_scan_time_prize_amount" property="scanTimePrizeAmount" jdbcType="INTEGER" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_prize_pic_url" property="prizePicUrl" jdbcType="VARCHAR" />
+    <result column="_prize_pic_path" property="prizePicPath" jdbcType="VARCHAR" />
+    <result column="_lucky_count" property="luckyCount" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _scan_time_prize_id, _scan_time_prize_name, _use_scan_time, _scan_time_prize_type, 
+    _scan_time_prize_amount, _status, _prize_pic_url, _prize_pic_path, _lucky_count, 
+    _create_time, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrizeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_user_scan_code_time_prize
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_user_scan_code_time_prize
+    where _scan_time_prize_id = #{scanTimePrizeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_user_scan_code_time_prize
+    where _scan_time_prize_id = #{scanTimePrizeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrizeExample" >
+    delete from ${tablePrefix}_user_scan_code_time_prize
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrize" >
+    insert into ${tablePrefix}_user_scan_code_time_prize (_scan_time_prize_id, _scan_time_prize_name, 
+      _use_scan_time, _scan_time_prize_type, _scan_time_prize_amount, 
+      _status, _prize_pic_url, _prize_pic_path, 
+      _lucky_count, _create_time, _update_time
+      )
+    values (#{scanTimePrizeId,jdbcType=INTEGER}, #{scanTimePrizeName,jdbcType=VARCHAR}, 
+      #{useScanTime,jdbcType=INTEGER}, #{scanTimePrizeType,jdbcType=INTEGER}, #{scanTimePrizeAmount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{prizePicUrl,jdbcType=VARCHAR}, #{prizePicPath,jdbcType=VARCHAR}, 
+      #{luckyCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrize" >
+    insert into ${tablePrefix}_user_scan_code_time_prize
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scanTimePrizeId != null" >
+        _scan_time_prize_id,
+      </if>
+      <if test="scanTimePrizeName != null" >
+        _scan_time_prize_name,
+      </if>
+      <if test="useScanTime != null" >
+        _use_scan_time,
+      </if>
+      <if test="scanTimePrizeType != null" >
+        _scan_time_prize_type,
+      </if>
+      <if test="scanTimePrizeAmount != null" >
+        _scan_time_prize_amount,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="prizePicUrl != null" >
+        _prize_pic_url,
+      </if>
+      <if test="prizePicPath != null" >
+        _prize_pic_path,
+      </if>
+      <if test="luckyCount != null" >
+        _lucky_count,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scanTimePrizeId != null" >
+        #{scanTimePrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="scanTimePrizeName != null" >
+        #{scanTimePrizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="useScanTime != null" >
+        #{useScanTime,jdbcType=INTEGER},
+      </if>
+      <if test="scanTimePrizeType != null" >
+        #{scanTimePrizeType,jdbcType=INTEGER},
+      </if>
+      <if test="scanTimePrizeAmount != null" >
+        #{scanTimePrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="prizePicUrl != null" >
+        #{prizePicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="prizePicPath != null" >
+        #{prizePicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="luckyCount != null" >
+        #{luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrizeExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_user_scan_code_time_prize
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_user_scan_code_time_prize
+    <set >
+      <if test="record.scanTimePrizeId != null" >
+        _scan_time_prize_id = #{record.scanTimePrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanTimePrizeName != null" >
+        _scan_time_prize_name = #{record.scanTimePrizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useScanTime != null" >
+        _use_scan_time = #{record.useScanTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanTimePrizeType != null" >
+        _scan_time_prize_type = #{record.scanTimePrizeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanTimePrizeAmount != null" >
+        _scan_time_prize_amount = #{record.scanTimePrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizePicUrl != null" >
+        _prize_pic_url = #{record.prizePicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizePicPath != null" >
+        _prize_pic_path = #{record.prizePicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.luckyCount != null" >
+        _lucky_count = #{record.luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_user_scan_code_time_prize
+    set _scan_time_prize_id = #{record.scanTimePrizeId,jdbcType=INTEGER},
+      _scan_time_prize_name = #{record.scanTimePrizeName,jdbcType=VARCHAR},
+      _use_scan_time = #{record.useScanTime,jdbcType=INTEGER},
+      _scan_time_prize_type = #{record.scanTimePrizeType,jdbcType=INTEGER},
+      _scan_time_prize_amount = #{record.scanTimePrizeAmount,jdbcType=INTEGER},
+      _status = #{record.status,jdbcType=INTEGER},
+      _prize_pic_url = #{record.prizePicUrl,jdbcType=VARCHAR},
+      _prize_pic_path = #{record.prizePicPath,jdbcType=VARCHAR},
+      _lucky_count = #{record.luckyCount,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrize" >
+    update ${tablePrefix}_user_scan_code_time_prize
+    <set >
+      <if test="scanTimePrizeName != null" >
+        _scan_time_prize_name = #{scanTimePrizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="useScanTime != null" >
+        _use_scan_time = #{useScanTime,jdbcType=INTEGER},
+      </if>
+      <if test="scanTimePrizeType != null" >
+        _scan_time_prize_type = #{scanTimePrizeType,jdbcType=INTEGER},
+      </if>
+      <if test="scanTimePrizeAmount != null" >
+        _scan_time_prize_amount = #{scanTimePrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="prizePicUrl != null" >
+        _prize_pic_url = #{prizePicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="prizePicPath != null" >
+        _prize_pic_path = #{prizePicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="luckyCount != null" >
+        _lucky_count = #{luckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _scan_time_prize_id = #{scanTimePrizeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.UserScanCodeTimePrize" >
+    update ${tablePrefix}_user_scan_code_time_prize
+    set _scan_time_prize_name = #{scanTimePrizeName,jdbcType=VARCHAR},
+      _use_scan_time = #{useScanTime,jdbcType=INTEGER},
+      _scan_time_prize_type = #{scanTimePrizeType,jdbcType=INTEGER},
+      _scan_time_prize_amount = #{scanTimePrizeAmount,jdbcType=INTEGER},
+      _status = #{status,jdbcType=INTEGER},
+      _prize_pic_url = #{prizePicUrl,jdbcType=VARCHAR},
+      _prize_pic_path = #{prizePicPath,jdbcType=VARCHAR},
+      _lucky_count = #{luckyCount,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _scan_time_prize_id = #{scanTimePrizeId,jdbcType=INTEGER}
+  </update>
+</mapper>

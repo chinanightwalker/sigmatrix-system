@@ -1,0 +1,25 @@
+# LoginController 
+token.timeout=1800000
+pic.path=/data/tmpdata/
+#serverinfo url
+project.basic.config.url = http://info.sys.v5q.cn/info_mse
+#project.basic.config.url = http://info.sys.v5q.cn/info_scld
+
+#database connection pool 
+druid.initialSize=1
+druid.minIdle=5
+druid.maxActive=20
+druid.maxWait=60000
+druid.removeAbandoned = true
+druid.removeAbandonedTimeout = 180
+druid.logAbandoned=true
+druid.timeBetweenEvictionRunsMillis=60000
+druid.minEvictableIdleTimeMillis=300000
+druid.validationQuery=SELECT 'x'
+druid.testWhileIdle=true
+druid.testOnBorrow=false
+druid.testOnReturn=false
+druid.poolPreparedStatements=false
+druid.maxPoolPreparedStatementPerConnectionSize=20
+druid.filters=wall,stat
+

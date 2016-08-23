@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.SettingsMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.Settings" >
+    <id column="_id" property="id" jdbcType="INTEGER" />
+    <result column="_name" property="name" jdbcType="VARCHAR" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_key" property="key" jdbcType="VARCHAR" />
+    <result column="_value" property="value" jdbcType="VARCHAR" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, _name, _status, _key, _value, _create_time, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.SettingsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_settings
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_settings
+    where _id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_settings
+    where _id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.SettingsExample" >
+    delete from ${tablePrefix}_settings
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.Settings" >
+    insert into ${tablePrefix}_settings (_id, _name, _status, 
+      _key, _value, _create_time, 
+      _update_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.Settings" >
+    insert into ${tablePrefix}_settings
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="name != null" >
+        _name,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="key != null" >
+        _key,
+      </if>
+      <if test="value != null" >
+        _value,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.SettingsExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_settings
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_settings
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        _name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.key != null" >
+        _key = #{record.key,jdbcType=VARCHAR},
+      </if>
+      <if test="record.value != null" >
+        _value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_settings
+    set _id = #{record.id,jdbcType=INTEGER},
+      _name = #{record.name,jdbcType=VARCHAR},
+      _status = #{record.status,jdbcType=INTEGER},
+      _key = #{record.key,jdbcType=VARCHAR},
+      _value = #{record.value,jdbcType=VARCHAR},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.Settings" >
+    update ${tablePrefix}_settings
+    <set >
+      <if test="name != null" >
+        _name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="key != null" >
+        _key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        _value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.Settings" >
+    update ${tablePrefix}_settings
+    set _name = #{name,jdbcType=VARCHAR},
+      _status = #{status,jdbcType=INTEGER},
+      _key = #{key,jdbcType=VARCHAR},
+      _value = #{value,jdbcType=VARCHAR},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

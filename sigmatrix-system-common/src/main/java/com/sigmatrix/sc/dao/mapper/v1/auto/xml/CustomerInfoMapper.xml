@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.CustomerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.CustomerInfo" >
+    <id column="_customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="_customer_code" property="customerCode" jdbcType="VARCHAR" />
+    <result column="_customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="_phone" property="phone" jdbcType="VARCHAR" />
+    <result column="_first_award" property="firstAward" jdbcType="INTEGER" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="_type" property="type" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="_open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="_pay_open_id" property="payOpenId" jdbcType="VARCHAR" />
+    <result column="_currents" property="currents" jdbcType="INTEGER" />
+    <result column="_head_icon" property="headIcon" jdbcType="VARCHAR" />
+    <result column="_nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="_verfy_code" property="verfyCode" jdbcType="VARCHAR" />
+    <result column="_valid_time" property="validTime" jdbcType="TIMESTAMP" />
+    <result column="_input_verfy_code" property="inputVerfyCode" jdbcType="VARCHAR" />
+    <result column="_input_err_num" property="inputErrNum" jdbcType="INTEGER" />
+    <result column="_input_err_last_time" property="inputErrLastTime" jdbcType="TIMESTAMP" />
+    <result column="_scan_code_total_num" property="scanCodeTotalNum" jdbcType="INTEGER" />
+    <result column="_scan_code_use_num" property="scanCodeUseNum" jdbcType="INTEGER" />
+    
+    
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _customer_id, _customer_code, _customer_name, _phone, _first_award, _status, _activity_id, 
+    _type, _create_time, _update_time, _open_id, _pay_open_id, _currents, _head_icon, 
+    _nick_name, _verfy_code, _valid_time, _input_verfy_code, _input_err_num, _input_err_last_time, 
+    _scan_code_total_num, _scan_code_use_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_customer_info
+    where _customer_id = #{customerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_customer_info
+    where _customer_id = #{customerId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfoExample" >
+    delete from ${tablePrefix}_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfo" >
+    insert into ${tablePrefix}_customer_info (_customer_id, _customer_code, _customer_name, 
+      _phone, _first_award, _status, 
+      _activity_id, _type, _create_time, 
+      _update_time, _open_id, _pay_open_id, 
+      _currents, _head_icon, _nick_name, 
+      _verfy_code, _valid_time, _input_verfy_code, 
+      _input_err_num, _input_err_last_time, _scan_code_total_num, 
+      _scan_code_use_num)
+    values (#{customerId,jdbcType=INTEGER}, #{customerCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{firstAward,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{activityId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{openId,jdbcType=VARCHAR}, #{payOpenId,jdbcType=VARCHAR}, 
+      #{currents,jdbcType=INTEGER}, #{headIcon,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{verfyCode,jdbcType=VARCHAR}, #{validTime,jdbcType=TIMESTAMP}, #{inputVerfyCode,jdbcType=VARCHAR}, 
+      #{inputErrNum,jdbcType=INTEGER}, #{inputErrLastTime,jdbcType=TIMESTAMP}, #{scanCodeTotalNum,jdbcType=INTEGER}, 
+      #{scanCodeUseNum,jdbcType=INTEGER}, #{cashCouponPrizeId,jdbcType=INTEGER}, #{cashCouponGetTime,jdbcType=TIMESTAMP}, 
+      #{cashCouponAmount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfo" >
+    insert into ${tablePrefix}_customer_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        _customer_id,
+      </if>
+      <if test="customerCode != null" >
+        _customer_code,
+      </if>
+      <if test="customerName != null" >
+        _customer_name,
+      </if>
+      <if test="phone != null" >
+        _phone,
+      </if>
+      <if test="firstAward != null" >
+        _first_award,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="activityId != null" >
+        _activity_id,
+      </if>
+      <if test="type != null" >
+        _type,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+      <if test="openId != null" >
+        _open_id,
+      </if>
+      <if test="payOpenId != null" >
+        _pay_open_id,
+      </if>
+      <if test="currents != null" >
+        _currents,
+      </if>
+      <if test="headIcon != null" >
+        _head_icon,
+      </if>
+      <if test="nickName != null" >
+        _nick_name,
+      </if>
+      <if test="verfyCode != null" >
+        _verfy_code,
+      </if>
+      <if test="validTime != null" >
+        _valid_time,
+      </if>
+      <if test="inputVerfyCode != null" >
+        _input_verfy_code,
+      </if>
+      <if test="inputErrNum != null" >
+        _input_err_num,
+      </if>
+      <if test="inputErrLastTime != null" >
+        _input_err_last_time,
+      </if>
+      <if test="scanCodeTotalNum != null" >
+        _scan_code_total_num,
+      </if>
+      <if test="scanCodeUseNum != null" >
+        _scan_code_use_num,
+      </if>
+      
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerCode != null" >
+        #{customerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="firstAward != null" >
+        #{firstAward,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="payOpenId != null" >
+        #{payOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="currents != null" >
+        #{currents,jdbcType=INTEGER},
+      </if>
+      <if test="headIcon != null" >
+        #{headIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="verfyCode != null" >
+        #{verfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inputVerfyCode != null" >
+        #{inputVerfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputErrNum != null" >
+        #{inputErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="inputErrLastTime != null" >
+        #{inputErrLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scanCodeTotalNum != null" >
+        #{scanCodeTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="scanCodeUseNum != null" >
+        #{scanCodeUseNum,jdbcType=INTEGER},
+      </if>
+      <if test="cashCouponPrizeId != null" >
+        #{cashCouponPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="cashCouponGetTime != null" >
+        #{cashCouponGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cashCouponAmount != null" >
+        #{cashCouponAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfoExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_customer_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_customer_info
+    <set >
+      <if test="record.customerId != null" >
+        _customer_id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerCode != null" >
+        _customer_code = #{record.customerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerName != null" >
+        _customer_name = #{record.customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        _phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstAward != null" >
+        _first_award = #{record.firstAward,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        _activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        _type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openId != null" >
+        _open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payOpenId != null" >
+        _pay_open_id = #{record.payOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currents != null" >
+        _currents = #{record.currents,jdbcType=INTEGER},
+      </if>
+      <if test="record.headIcon != null" >
+        _head_icon = #{record.headIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        _nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verfyCode != null" >
+        _verfy_code = #{record.verfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validTime != null" >
+        _valid_time = #{record.validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inputVerfyCode != null" >
+        _input_verfy_code = #{record.inputVerfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputErrNum != null" >
+        _input_err_num = #{record.inputErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.inputErrLastTime != null" >
+        _input_err_last_time = #{record.inputErrLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.scanCodeTotalNum != null" >
+        _scan_code_total_num = #{record.scanCodeTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.scanCodeUseNum != null" >
+        _scan_code_use_num = #{record.scanCodeUseNum,jdbcType=INTEGER},
+      </if>
+      
+      
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_customer_info
+    set _customer_id = #{record.customerId,jdbcType=INTEGER},
+      _customer_code = #{record.customerCode,jdbcType=VARCHAR},
+      _customer_name = #{record.customerName,jdbcType=VARCHAR},
+      _phone = #{record.phone,jdbcType=VARCHAR},
+      _first_award = #{record.firstAward,jdbcType=INTEGER},
+      _status = #{record.status,jdbcType=INTEGER},
+      _activity_id = #{record.activityId,jdbcType=INTEGER},
+      _type = #{record.type,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      _open_id = #{record.openId,jdbcType=VARCHAR},
+      _pay_open_id = #{record.payOpenId,jdbcType=VARCHAR},
+      _currents = #{record.currents,jdbcType=INTEGER},
+      _head_icon = #{record.headIcon,jdbcType=VARCHAR},
+      _nick_name = #{record.nickName,jdbcType=VARCHAR},
+      _verfy_code = #{record.verfyCode,jdbcType=VARCHAR},
+      _valid_time = #{record.validTime,jdbcType=TIMESTAMP},
+      _input_verfy_code = #{record.inputVerfyCode,jdbcType=VARCHAR},
+      _input_err_num = #{record.inputErrNum,jdbcType=INTEGER},
+      _input_err_last_time = #{record.inputErrLastTime,jdbcType=TIMESTAMP},
+      _scan_code_total_num = #{record.scanCodeTotalNum,jdbcType=INTEGER},
+      _scan_code_use_num = #{record.scanCodeUseNum,jdbcType=INTEGER},
+      
+      
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfo" >
+    update ${tablePrefix}_customer_info
+    <set >
+      <if test="customerCode != null" >
+        _customer_code = #{customerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        _customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        _phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="firstAward != null" >
+        _first_award = #{firstAward,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        _activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        _type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openId != null" >
+        _open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="payOpenId != null" >
+        _pay_open_id = #{payOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="currents != null" >
+        _currents = #{currents,jdbcType=INTEGER},
+      </if>
+      <if test="headIcon != null" >
+        _head_icon = #{headIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        _nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="verfyCode != null" >
+        _verfy_code = #{verfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validTime != null" >
+        _valid_time = #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inputVerfyCode != null" >
+        _input_verfy_code = #{inputVerfyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputErrNum != null" >
+        _input_err_num = #{inputErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="inputErrLastTime != null" >
+        _input_err_last_time = #{inputErrLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scanCodeTotalNum != null" >
+        _scan_code_total_num = #{scanCodeTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="scanCodeUseNum != null" >
+        _scan_code_use_num = #{scanCodeUseNum,jdbcType=INTEGER},
+      </if>
+     
+      
+    </set>
+    where _customer_id = #{customerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.CustomerInfo" >
+    update ${tablePrefix}_customer_info
+    set _customer_code = #{customerCode,jdbcType=VARCHAR},
+      _customer_name = #{customerName,jdbcType=VARCHAR},
+      _phone = #{phone,jdbcType=VARCHAR},
+      _first_award = #{firstAward,jdbcType=INTEGER},
+      _status = #{status,jdbcType=INTEGER},
+      _activity_id = #{activityId,jdbcType=INTEGER},
+      _type = #{type,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      _open_id = #{openId,jdbcType=VARCHAR},
+      _pay_open_id = #{payOpenId,jdbcType=VARCHAR},
+      _currents = #{currents,jdbcType=INTEGER},
+      _head_icon = #{headIcon,jdbcType=VARCHAR},
+      _nick_name = #{nickName,jdbcType=VARCHAR},
+      _verfy_code = #{verfyCode,jdbcType=VARCHAR},
+      _valid_time = #{validTime,jdbcType=TIMESTAMP},
+      _input_verfy_code = #{inputVerfyCode,jdbcType=VARCHAR},
+      _input_err_num = #{inputErrNum,jdbcType=INTEGER},
+      _input_err_last_time = #{inputErrLastTime,jdbcType=TIMESTAMP},
+      _scan_code_total_num = #{scanCodeTotalNum,jdbcType=INTEGER},
+      _scan_code_use_num = #{scanCodeUseNum,jdbcType=INTEGER}
+    where _customer_id = #{customerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.BarcodeFlActiveInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfo" >
+    <id column="_barcode_fl_active_info" property="barcodeFlActiveInfo" jdbcType="INTEGER" />
+    <result column="_avtive_info_id" property="avtiveInfoId" jdbcType="INTEGER" />
+    <result column="_avtivate_time" property="avtivateTime" jdbcType="TIMESTAMP" />
+    <result column="_usercode" property="usercode" jdbcType="VARCHAR" />
+    <result column="_username" property="username" jdbcType="VARCHAR" />
+    <result column="_plancode" property="plancode" jdbcType="VARCHAR" />
+    <result column="_activate_status" property="activateStatus" jdbcType="INTEGER" />
+    <result column="_barcode_b_level_fl" property="barcodeBLevelFl" jdbcType="VARCHAR" />
+    <result column="_activate_result" property="activateResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _barcode_fl_active_info, _avtive_info_id, _avtivate_time, _usercode, _username, _plancode, 
+    _activate_status, _barcode_b_level_fl, _activate_result
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_fl_active_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_fl_active_info
+    where _barcode_fl_active_info = #{barcodeFlActiveInfo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_barcode_fl_active_info
+    where _barcode_fl_active_info = #{barcodeFlActiveInfo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfoExample" >
+    delete from ${tablePrefix}_barcode_fl_active_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfo" >
+    insert into ${tablePrefix}_barcode_fl_active_info (_barcode_fl_active_info, _avtive_info_id, 
+      _avtivate_time, _usercode, _username, 
+      _plancode, _activate_status, _barcode_b_level_fl, 
+      _activate_result)
+    values (#{barcodeFlActiveInfo,jdbcType=INTEGER}, #{avtiveInfoId,jdbcType=INTEGER}, 
+      #{avtivateTime,jdbcType=TIMESTAMP}, #{usercode,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{plancode,jdbcType=VARCHAR}, #{activateStatus,jdbcType=INTEGER}, #{barcodeBLevelFl,jdbcType=VARCHAR}, 
+      #{activateResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfo" >
+    insert into ${tablePrefix}_barcode_fl_active_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="barcodeFlActiveInfo != null" >
+        _barcode_fl_active_info,
+      </if>
+      <if test="avtiveInfoId != null" >
+        _avtive_info_id,
+      </if>
+      <if test="avtivateTime != null" >
+        _avtivate_time,
+      </if>
+      <if test="usercode != null" >
+        _usercode,
+      </if>
+      <if test="username != null" >
+        _username,
+      </if>
+      <if test="plancode != null" >
+        _plancode,
+      </if>
+      <if test="activateStatus != null" >
+        _activate_status,
+      </if>
+      <if test="barcodeBLevelFl != null" >
+        _barcode_b_level_fl,
+      </if>
+      <if test="activateResult != null" >
+        _activate_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="barcodeFlActiveInfo != null" >
+        #{barcodeFlActiveInfo,jdbcType=INTEGER},
+      </if>
+      <if test="avtiveInfoId != null" >
+        #{avtiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="avtivateTime != null" >
+        #{avtivateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usercode != null" >
+        #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="plancode != null" >
+        #{plancode,jdbcType=VARCHAR},
+      </if>
+      <if test="activateStatus != null" >
+        #{activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeBLevelFl != null" >
+        #{barcodeBLevelFl,jdbcType=VARCHAR},
+      </if>
+      <if test="activateResult != null" >
+        #{activateResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfoExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_barcode_fl_active_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_barcode_fl_active_info
+    <set >
+      <if test="record.barcodeFlActiveInfo != null" >
+        _barcode_fl_active_info = #{record.barcodeFlActiveInfo,jdbcType=INTEGER},
+      </if>
+      <if test="record.avtiveInfoId != null" >
+        _avtive_info_id = #{record.avtiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.avtivateTime != null" >
+        _avtivate_time = #{record.avtivateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.usercode != null" >
+        _usercode = #{record.usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        _username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plancode != null" >
+        _plancode = #{record.plancode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activateStatus != null" >
+        _activate_status = #{record.activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.barcodeBLevelFl != null" >
+        _barcode_b_level_fl = #{record.barcodeBLevelFl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activateResult != null" >
+        _activate_result = #{record.activateResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_barcode_fl_active_info
+    set _barcode_fl_active_info = #{record.barcodeFlActiveInfo,jdbcType=INTEGER},
+      _avtive_info_id = #{record.avtiveInfoId,jdbcType=INTEGER},
+      _avtivate_time = #{record.avtivateTime,jdbcType=TIMESTAMP},
+      _usercode = #{record.usercode,jdbcType=VARCHAR},
+      _username = #{record.username,jdbcType=VARCHAR},
+      _plancode = #{record.plancode,jdbcType=VARCHAR},
+      _activate_status = #{record.activateStatus,jdbcType=INTEGER},
+      _barcode_b_level_fl = #{record.barcodeBLevelFl,jdbcType=VARCHAR},
+      _activate_result = #{record.activateResult,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfo" >
+    update ${tablePrefix}_barcode_fl_active_info
+    <set >
+      <if test="avtiveInfoId != null" >
+        _avtive_info_id = #{avtiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="avtivateTime != null" >
+        _avtivate_time = #{avtivateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usercode != null" >
+        _usercode = #{usercode,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        _username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="plancode != null" >
+        _plancode = #{plancode,jdbcType=VARCHAR},
+      </if>
+      <if test="activateStatus != null" >
+        _activate_status = #{activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeBLevelFl != null" >
+        _barcode_b_level_fl = #{barcodeBLevelFl,jdbcType=VARCHAR},
+      </if>
+      <if test="activateResult != null" >
+        _activate_result = #{activateResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where _barcode_fl_active_info = #{barcodeFlActiveInfo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.BarcodeFlActiveInfo" >
+    update ${tablePrefix}_barcode_fl_active_info
+    set _avtive_info_id = #{avtiveInfoId,jdbcType=INTEGER},
+      _avtivate_time = #{avtivateTime,jdbcType=TIMESTAMP},
+      _usercode = #{usercode,jdbcType=VARCHAR},
+      _username = #{username,jdbcType=VARCHAR},
+      _plancode = #{plancode,jdbcType=VARCHAR},
+      _activate_status = #{activateStatus,jdbcType=INTEGER},
+      _barcode_b_level_fl = #{barcodeBLevelFl,jdbcType=VARCHAR},
+      _activate_result = #{activateResult,jdbcType=VARCHAR}
+    where _barcode_fl_active_info = #{barcodeFlActiveInfo,jdbcType=INTEGER}
+  </update>
+</mapper>

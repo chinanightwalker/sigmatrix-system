@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.ProductBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.ProductBase" >
+    <id column="_product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="_product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="_product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="_product_classify_id" property="productClassifyId" jdbcType="INTEGER" />
+    <result column="_product_info" property="productInfo" jdbcType="VARCHAR" />
+    <result column="_pack_count" property="packCount" jdbcType="INTEGER" />
+    <result column="_product_integrate" property="productIntegrate" jdbcType="INTEGER" />
+    <result column="_is_user_integrate" property="isUserIntegrate" jdbcType="INTEGER" />
+    <result column="_enterprise_id" property="enterpriseId" jdbcType="INTEGER" />
+    <result column="_status" property="status" jdbcType="INTEGER" />
+    <result column="_last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_shelf_life" property="shelfLife" jdbcType="INTEGER" />
+    <result column="_supp_rule" property="suppRule" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _product_id, _product_code, _product_name, _product_classify_id, _product_info, _pack_count, 
+    _product_integrate, _is_user_integrate, _enterprise_id, _status, _last_update_time, 
+    _create_time, _shelf_life, _supp_rule
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.ProductBaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_product_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_product_base
+    where _product_id = #{productId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_product_base
+    where _product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.ProductBaseExample" >
+    delete from ${tablePrefix}_product_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.ProductBase" >
+    insert into ${tablePrefix}_product_base (_product_id, _product_code, _product_name, 
+      _product_classify_id, _product_info, _pack_count, 
+      _product_integrate, _is_user_integrate, _enterprise_id, 
+      _status, _last_update_time, _create_time, 
+      _shelf_life, _supp_rule)
+    values (#{productId,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{productClassifyId,jdbcType=INTEGER}, #{productInfo,jdbcType=VARCHAR}, #{packCount,jdbcType=INTEGER}, 
+      #{productIntegrate,jdbcType=INTEGER}, #{isUserIntegrate,jdbcType=INTEGER}, #{enterpriseId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{shelfLife,jdbcType=INTEGER}, #{suppRule,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.ProductBase" >
+    insert into ${tablePrefix}_product_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        _product_id,
+      </if>
+      <if test="productCode != null" >
+        _product_code,
+      </if>
+      <if test="productName != null" >
+        _product_name,
+      </if>
+      <if test="productClassifyId != null" >
+        _product_classify_id,
+      </if>
+      <if test="productInfo != null" >
+        _product_info,
+      </if>
+      <if test="packCount != null" >
+        _pack_count,
+      </if>
+      <if test="productIntegrate != null" >
+        _product_integrate,
+      </if>
+      <if test="isUserIntegrate != null" >
+        _is_user_integrate,
+      </if>
+      <if test="enterpriseId != null" >
+        _enterprise_id,
+      </if>
+      <if test="status != null" >
+        _status,
+      </if>
+      <if test="lastUpdateTime != null" >
+        _last_update_time,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="shelfLife != null" >
+        _shelf_life,
+      </if>
+      <if test="suppRule != null" >
+        _supp_rule,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productClassifyId != null" >
+        #{productClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="productInfo != null" >
+        #{productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="packCount != null" >
+        #{packCount,jdbcType=INTEGER},
+      </if>
+      <if test="productIntegrate != null" >
+        #{productIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="isUserIntegrate != null" >
+        #{isUserIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null" >
+        #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="suppRule != null" >
+        #{suppRule,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.ProductBaseExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_product_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_product_base
+    <set >
+      <if test="record.productId != null" >
+        _product_id = #{record.productId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productCode != null" >
+        _product_code = #{record.productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productName != null" >
+        _product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productClassifyId != null" >
+        _product_classify_id = #{record.productClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productInfo != null" >
+        _product_info = #{record.productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.packCount != null" >
+        _pack_count = #{record.packCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.productIntegrate != null" >
+        _product_integrate = #{record.productIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUserIntegrate != null" >
+        _is_user_integrate = #{record.isUserIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="record.enterpriseId != null" >
+        _enterprise_id = #{record.enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        _status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        _last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shelfLife != null" >
+        _shelf_life = #{record.shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="record.suppRule != null" >
+        _supp_rule = #{record.suppRule,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_product_base
+    set _product_id = #{record.productId,jdbcType=VARCHAR},
+      _product_code = #{record.productCode,jdbcType=VARCHAR},
+      _product_name = #{record.productName,jdbcType=VARCHAR},
+      _product_classify_id = #{record.productClassifyId,jdbcType=INTEGER},
+      _product_info = #{record.productInfo,jdbcType=VARCHAR},
+      _pack_count = #{record.packCount,jdbcType=INTEGER},
+      _product_integrate = #{record.productIntegrate,jdbcType=INTEGER},
+      _is_user_integrate = #{record.isUserIntegrate,jdbcType=INTEGER},
+      _enterprise_id = #{record.enterpriseId,jdbcType=INTEGER},
+      _status = #{record.status,jdbcType=INTEGER},
+      _last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _shelf_life = #{record.shelfLife,jdbcType=INTEGER},
+      _supp_rule = #{record.suppRule,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.ProductBase" >
+    update ${tablePrefix}_product_base
+    <set >
+      <if test="productCode != null" >
+        _product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        _product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productClassifyId != null" >
+        _product_classify_id = #{productClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="productInfo != null" >
+        _product_info = #{productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="packCount != null" >
+        _pack_count = #{packCount,jdbcType=INTEGER},
+      </if>
+      <if test="productIntegrate != null" >
+        _product_integrate = #{productIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="isUserIntegrate != null" >
+        _is_user_integrate = #{isUserIntegrate,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseId != null" >
+        _enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        _status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null" >
+        _last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null" >
+        _shelf_life = #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="suppRule != null" >
+        _supp_rule = #{suppRule,jdbcType=INTEGER},
+      </if>
+    </set>
+    where _product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.ProductBase" >
+    update ${tablePrefix}_product_base
+    set _product_code = #{productCode,jdbcType=VARCHAR},
+      _product_name = #{productName,jdbcType=VARCHAR},
+      _product_classify_id = #{productClassifyId,jdbcType=INTEGER},
+      _product_info = #{productInfo,jdbcType=VARCHAR},
+      _pack_count = #{packCount,jdbcType=INTEGER},
+      _product_integrate = #{productIntegrate,jdbcType=INTEGER},
+      _is_user_integrate = #{isUserIntegrate,jdbcType=INTEGER},
+      _enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+      _status = #{status,jdbcType=INTEGER},
+      _last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _shelf_life = #{shelfLife,jdbcType=INTEGER},
+      _supp_rule = #{suppRule,jdbcType=INTEGER}
+    where _product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+</mapper>

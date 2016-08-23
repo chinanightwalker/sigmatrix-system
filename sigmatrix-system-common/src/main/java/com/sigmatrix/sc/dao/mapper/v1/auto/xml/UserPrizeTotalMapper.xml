@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.UserPrizeTotalMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.UserPrizeTotal" >
+    <id column="_user_id" property="userId" jdbcType="INTEGER" />
+    <result column="_redbag_count" property="redbagCount" jdbcType="INTEGER" />
+    <result column="_redbag_success_count" property="redbagSuccessCount" jdbcType="INTEGER" />
+    <result column="_redbag_success_amount" property="redbagSuccessAmount" jdbcType="INTEGER" />
+    <result column="_redbag_amount" property="redbagAmount" jdbcType="INTEGER" />
+    <result column="_share_self_count" property="shareSelfCount" jdbcType="INTEGER" />
+    <result column="_share_self_success_count" property="shareSelfSuccessCount" jdbcType="INTEGER" />
+    <result column="_share_self_success_amount" property="shareSelfSuccessAmount" jdbcType="INTEGER" />
+    <result column="_share_self_amount" property="shareSelfAmount" jdbcType="INTEGER" />
+    <result column="_share_other_count" property="shareOtherCount" jdbcType="INTEGER" />
+    <result column="_share_other_success_count" property="shareOtherSuccessCount" jdbcType="INTEGER" />
+    <result column="_share_other_success_amount" property="shareOtherSuccessAmount" jdbcType="INTEGER" />
+    <result column="_share_other_amount" property="shareOtherAmount" jdbcType="INTEGER" />
+    <result column="_change_count" property="changeCount" jdbcType="INTEGER" />
+    <result column="_change_success_count" property="changeSuccessCount" jdbcType="INTEGER" />
+    <result column="_change_success_amount" property="changeSuccessAmount" jdbcType="INTEGER" />
+    <result column="_change_amount" property="changeAmount" jdbcType="INTEGER" />
+    <result column="_integral_count" property="integralCount" jdbcType="INTEGER" />
+    <result column="_integral_amount" property="integralAmount" jdbcType="INTEGER" />
+    <result column="_zlyp_count" property="zlypCount" jdbcType="INTEGER" />
+    <result column="_zlyp_get_count" property="zlypGetCount" jdbcType="INTEGER" />
+    <result column="_time_redbag_count" property="timeRedbagCount" jdbcType="INTEGER" />
+    <result column="_time_redbag_amount" property="timeRedbagAmount" jdbcType="INTEGER" />
+    <result column="_coupon_count" property="couponCount" jdbcType="INTEGER" />
+    <result column="_coupon_amount" property="couponAmount" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _user_id, _redbag_count, _redbag_success_count, _redbag_success_amount, _redbag_amount, 
+    _share_self_count, _share_self_success_count, _share_self_success_amount, _share_self_amount, 
+    _share_other_count, _share_other_success_count, _share_other_success_amount, _share_other_amount, 
+    _change_count, _change_success_count, _change_success_amount, _change_amount, _integral_count, 
+    _integral_amount, _zlyp_count, _zlyp_get_count, _time_redbag_count, _time_redbag_amount, 
+    _coupon_count, _coupon_amount, _create_time, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_user_prize_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_user_prize_total
+    where _user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_user_prize_total
+    where _user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotalExample" >
+    delete from ${tablePrefix}_user_prize_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotal" >
+    insert into ${tablePrefix}_user_prize_total (_user_id, _redbag_count, _redbag_success_count, 
+      _redbag_success_amount, _redbag_amount, _share_self_count, 
+      _share_self_success_count, _share_self_success_amount, 
+      _share_self_amount, _share_other_count, _share_other_success_count, 
+      _share_other_success_amount, _share_other_amount, 
+      _change_count, _change_success_count, _change_success_amount, 
+      _change_amount, _integral_count, _integral_amount, 
+      _zlyp_count, _zlyp_get_count, _time_redbag_count, 
+      _time_redbag_amount, _coupon_count, _coupon_amount, 
+      _create_time, _update_time)
+    values (#{userId,jdbcType=INTEGER}, #{redbagCount,jdbcType=INTEGER}, #{redbagSuccessCount,jdbcType=INTEGER}, 
+      #{redbagSuccessAmount,jdbcType=INTEGER}, #{redbagAmount,jdbcType=INTEGER}, #{shareSelfCount,jdbcType=INTEGER}, 
+      #{shareSelfSuccessCount,jdbcType=INTEGER}, #{shareSelfSuccessAmount,jdbcType=INTEGER}, 
+      #{shareSelfAmount,jdbcType=INTEGER}, #{shareOtherCount,jdbcType=INTEGER}, #{shareOtherSuccessCount,jdbcType=INTEGER}, 
+      #{shareOtherSuccessAmount,jdbcType=INTEGER}, #{shareOtherAmount,jdbcType=INTEGER}, 
+      #{changeCount,jdbcType=INTEGER}, #{changeSuccessCount,jdbcType=INTEGER}, #{changeSuccessAmount,jdbcType=INTEGER}, 
+      #{changeAmount,jdbcType=INTEGER}, #{integralCount,jdbcType=INTEGER}, #{integralAmount,jdbcType=INTEGER}, 
+      #{zlypCount,jdbcType=INTEGER}, #{zlypGetCount,jdbcType=INTEGER}, #{timeRedbagCount,jdbcType=INTEGER}, 
+      #{timeRedbagAmount,jdbcType=INTEGER}, #{couponCount,jdbcType=INTEGER}, #{couponAmount,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotal" >
+    insert into ${tablePrefix}_user_prize_total
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        _user_id,
+      </if>
+      <if test="redbagCount != null" >
+        _redbag_count,
+      </if>
+      <if test="redbagSuccessCount != null" >
+        _redbag_success_count,
+      </if>
+      <if test="redbagSuccessAmount != null" >
+        _redbag_success_amount,
+      </if>
+      <if test="redbagAmount != null" >
+        _redbag_amount,
+      </if>
+      <if test="shareSelfCount != null" >
+        _share_self_count,
+      </if>
+      <if test="shareSelfSuccessCount != null" >
+        _share_self_success_count,
+      </if>
+      <if test="shareSelfSuccessAmount != null" >
+        _share_self_success_amount,
+      </if>
+      <if test="shareSelfAmount != null" >
+        _share_self_amount,
+      </if>
+      <if test="shareOtherCount != null" >
+        _share_other_count,
+      </if>
+      <if test="shareOtherSuccessCount != null" >
+        _share_other_success_count,
+      </if>
+      <if test="shareOtherSuccessAmount != null" >
+        _share_other_success_amount,
+      </if>
+      <if test="shareOtherAmount != null" >
+        _share_other_amount,
+      </if>
+      <if test="changeCount != null" >
+        _change_count,
+      </if>
+      <if test="changeSuccessCount != null" >
+        _change_success_count,
+      </if>
+      <if test="changeSuccessAmount != null" >
+        _change_success_amount,
+      </if>
+      <if test="changeAmount != null" >
+        _change_amount,
+      </if>
+      <if test="integralCount != null" >
+        _integral_count,
+      </if>
+      <if test="integralAmount != null" >
+        _integral_amount,
+      </if>
+      <if test="zlypCount != null" >
+        _zlyp_count,
+      </if>
+      <if test="zlypGetCount != null" >
+        _zlyp_get_count,
+      </if>
+      <if test="timeRedbagCount != null" >
+        _time_redbag_count,
+      </if>
+      <if test="timeRedbagAmount != null" >
+        _time_redbag_amount,
+      </if>
+      <if test="couponCount != null" >
+        _coupon_count,
+      </if>
+      <if test="couponAmount != null" >
+        _coupon_amount,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="redbagCount != null" >
+        #{redbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagSuccessCount != null" >
+        #{redbagSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagSuccessAmount != null" >
+        #{redbagSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagAmount != null" >
+        #{redbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfCount != null" >
+        #{shareSelfCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfSuccessCount != null" >
+        #{shareSelfSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfSuccessAmount != null" >
+        #{shareSelfSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfAmount != null" >
+        #{shareSelfAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherCount != null" >
+        #{shareOtherCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherSuccessCount != null" >
+        #{shareOtherSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherSuccessAmount != null" >
+        #{shareOtherSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherAmount != null" >
+        #{shareOtherAmount,jdbcType=INTEGER},
+      </if>
+      <if test="changeCount != null" >
+        #{changeCount,jdbcType=INTEGER},
+      </if>
+      <if test="changeSuccessCount != null" >
+        #{changeSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="changeSuccessAmount != null" >
+        #{changeSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="changeAmount != null" >
+        #{changeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="integralCount != null" >
+        #{integralCount,jdbcType=INTEGER},
+      </if>
+      <if test="integralAmount != null" >
+        #{integralAmount,jdbcType=INTEGER},
+      </if>
+      <if test="zlypCount != null" >
+        #{zlypCount,jdbcType=INTEGER},
+      </if>
+      <if test="zlypGetCount != null" >
+        #{zlypGetCount,jdbcType=INTEGER},
+      </if>
+      <if test="timeRedbagCount != null" >
+        #{timeRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="timeRedbagAmount != null" >
+        #{timeRedbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="couponCount != null" >
+        #{couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="couponAmount != null" >
+        #{couponAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotalExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_user_prize_total
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_user_prize_total
+    <set >
+      <if test="record.userId != null" >
+        _user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.redbagCount != null" >
+        _redbag_count = #{record.redbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.redbagSuccessCount != null" >
+        _redbag_success_count = #{record.redbagSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.redbagSuccessAmount != null" >
+        _redbag_success_amount = #{record.redbagSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.redbagAmount != null" >
+        _redbag_amount = #{record.redbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareSelfCount != null" >
+        _share_self_count = #{record.shareSelfCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareSelfSuccessCount != null" >
+        _share_self_success_count = #{record.shareSelfSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareSelfSuccessAmount != null" >
+        _share_self_success_amount = #{record.shareSelfSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareSelfAmount != null" >
+        _share_self_amount = #{record.shareSelfAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareOtherCount != null" >
+        _share_other_count = #{record.shareOtherCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareOtherSuccessCount != null" >
+        _share_other_success_count = #{record.shareOtherSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareOtherSuccessAmount != null" >
+        _share_other_success_amount = #{record.shareOtherSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.shareOtherAmount != null" >
+        _share_other_amount = #{record.shareOtherAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeCount != null" >
+        _change_count = #{record.changeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeSuccessCount != null" >
+        _change_success_count = #{record.changeSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeSuccessAmount != null" >
+        _change_success_amount = #{record.changeSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeAmount != null" >
+        _change_amount = #{record.changeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.integralCount != null" >
+        _integral_count = #{record.integralCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.integralAmount != null" >
+        _integral_amount = #{record.integralAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.zlypCount != null" >
+        _zlyp_count = #{record.zlypCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.zlypGetCount != null" >
+        _zlyp_get_count = #{record.zlypGetCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeRedbagCount != null" >
+        _time_redbag_count = #{record.timeRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeRedbagAmount != null" >
+        _time_redbag_amount = #{record.timeRedbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponCount != null" >
+        _coupon_count = #{record.couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponAmount != null" >
+        _coupon_amount = #{record.couponAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_user_prize_total
+    set _user_id = #{record.userId,jdbcType=INTEGER},
+      _redbag_count = #{record.redbagCount,jdbcType=INTEGER},
+      _redbag_success_count = #{record.redbagSuccessCount,jdbcType=INTEGER},
+      _redbag_success_amount = #{record.redbagSuccessAmount,jdbcType=INTEGER},
+      _redbag_amount = #{record.redbagAmount,jdbcType=INTEGER},
+      _share_self_count = #{record.shareSelfCount,jdbcType=INTEGER},
+      _share_self_success_count = #{record.shareSelfSuccessCount,jdbcType=INTEGER},
+      _share_self_success_amount = #{record.shareSelfSuccessAmount,jdbcType=INTEGER},
+      _share_self_amount = #{record.shareSelfAmount,jdbcType=INTEGER},
+      _share_other_count = #{record.shareOtherCount,jdbcType=INTEGER},
+      _share_other_success_count = #{record.shareOtherSuccessCount,jdbcType=INTEGER},
+      _share_other_success_amount = #{record.shareOtherSuccessAmount,jdbcType=INTEGER},
+      _share_other_amount = #{record.shareOtherAmount,jdbcType=INTEGER},
+      _change_count = #{record.changeCount,jdbcType=INTEGER},
+      _change_success_count = #{record.changeSuccessCount,jdbcType=INTEGER},
+      _change_success_amount = #{record.changeSuccessAmount,jdbcType=INTEGER},
+      _change_amount = #{record.changeAmount,jdbcType=INTEGER},
+      _integral_count = #{record.integralCount,jdbcType=INTEGER},
+      _integral_amount = #{record.integralAmount,jdbcType=INTEGER},
+      _zlyp_count = #{record.zlypCount,jdbcType=INTEGER},
+      _zlyp_get_count = #{record.zlypGetCount,jdbcType=INTEGER},
+      _time_redbag_count = #{record.timeRedbagCount,jdbcType=INTEGER},
+      _time_redbag_amount = #{record.timeRedbagAmount,jdbcType=INTEGER},
+      _coupon_count = #{record.couponCount,jdbcType=INTEGER},
+      _coupon_amount = #{record.couponAmount,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotal" >
+    update ${tablePrefix}_user_prize_total
+    <set >
+      <if test="redbagCount != null" >
+        _redbag_count = #{redbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagSuccessCount != null" >
+        _redbag_success_count = #{redbagSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagSuccessAmount != null" >
+        _redbag_success_amount = #{redbagSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="redbagAmount != null" >
+        _redbag_amount = #{redbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfCount != null" >
+        _share_self_count = #{shareSelfCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfSuccessCount != null" >
+        _share_self_success_count = #{shareSelfSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfSuccessAmount != null" >
+        _share_self_success_amount = #{shareSelfSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareSelfAmount != null" >
+        _share_self_amount = #{shareSelfAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherCount != null" >
+        _share_other_count = #{shareOtherCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherSuccessCount != null" >
+        _share_other_success_count = #{shareOtherSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherSuccessAmount != null" >
+        _share_other_success_amount = #{shareOtherSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="shareOtherAmount != null" >
+        _share_other_amount = #{shareOtherAmount,jdbcType=INTEGER},
+      </if>
+      <if test="changeCount != null" >
+        _change_count = #{changeCount,jdbcType=INTEGER},
+      </if>
+      <if test="changeSuccessCount != null" >
+        _change_success_count = #{changeSuccessCount,jdbcType=INTEGER},
+      </if>
+      <if test="changeSuccessAmount != null" >
+        _change_success_amount = #{changeSuccessAmount,jdbcType=INTEGER},
+      </if>
+      <if test="changeAmount != null" >
+        _change_amount = #{changeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="integralCount != null" >
+        _integral_count = #{integralCount,jdbcType=INTEGER},
+      </if>
+      <if test="integralAmount != null" >
+        _integral_amount = #{integralAmount,jdbcType=INTEGER},
+      </if>
+      <if test="zlypCount != null" >
+        _zlyp_count = #{zlypCount,jdbcType=INTEGER},
+      </if>
+      <if test="zlypGetCount != null" >
+        _zlyp_get_count = #{zlypGetCount,jdbcType=INTEGER},
+      </if>
+      <if test="timeRedbagCount != null" >
+        _time_redbag_count = #{timeRedbagCount,jdbcType=INTEGER},
+      </if>
+      <if test="timeRedbagAmount != null" >
+        _time_redbag_amount = #{timeRedbagAmount,jdbcType=INTEGER},
+      </if>
+      <if test="couponCount != null" >
+        _coupon_count = #{couponCount,jdbcType=INTEGER},
+      </if>
+      <if test="couponAmount != null" >
+        _coupon_amount = #{couponAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.UserPrizeTotal" >
+    update ${tablePrefix}_user_prize_total
+    set _redbag_count = #{redbagCount,jdbcType=INTEGER},
+      _redbag_success_count = #{redbagSuccessCount,jdbcType=INTEGER},
+      _redbag_success_amount = #{redbagSuccessAmount,jdbcType=INTEGER},
+      _redbag_amount = #{redbagAmount,jdbcType=INTEGER},
+      _share_self_count = #{shareSelfCount,jdbcType=INTEGER},
+      _share_self_success_count = #{shareSelfSuccessCount,jdbcType=INTEGER},
+      _share_self_success_amount = #{shareSelfSuccessAmount,jdbcType=INTEGER},
+      _share_self_amount = #{shareSelfAmount,jdbcType=INTEGER},
+      _share_other_count = #{shareOtherCount,jdbcType=INTEGER},
+      _share_other_success_count = #{shareOtherSuccessCount,jdbcType=INTEGER},
+      _share_other_success_amount = #{shareOtherSuccessAmount,jdbcType=INTEGER},
+      _share_other_amount = #{shareOtherAmount,jdbcType=INTEGER},
+      _change_count = #{changeCount,jdbcType=INTEGER},
+      _change_success_count = #{changeSuccessCount,jdbcType=INTEGER},
+      _change_success_amount = #{changeSuccessAmount,jdbcType=INTEGER},
+      _change_amount = #{changeAmount,jdbcType=INTEGER},
+      _integral_count = #{integralCount,jdbcType=INTEGER},
+      _integral_amount = #{integralAmount,jdbcType=INTEGER},
+      _zlyp_count = #{zlypCount,jdbcType=INTEGER},
+      _zlyp_get_count = #{zlypGetCount,jdbcType=INTEGER},
+      _time_redbag_count = #{timeRedbagCount,jdbcType=INTEGER},
+      _time_redbag_amount = #{timeRedbagAmount,jdbcType=INTEGER},
+      _coupon_count = #{couponCount,jdbcType=INTEGER},
+      _coupon_amount = #{couponAmount,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

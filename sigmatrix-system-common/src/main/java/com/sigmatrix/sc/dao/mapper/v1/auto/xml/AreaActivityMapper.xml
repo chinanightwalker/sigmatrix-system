@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.AreaActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.AreaActivity" >
+    <id column="_id" property="id" jdbcType="INTEGER" />
+    <result column="_customer_Id" property="customerId" jdbcType="INTEGER" />
+    <result column="_customer_type" property="customerType" jdbcType="INTEGER" />
+    <result column="_activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="_is_all" property="isAll" jdbcType="INTEGER" />
+    <result column="_level" property="level" jdbcType="INTEGER" />
+    <result column="_is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, _customer_Id, _customer_type, _activity_id, _is_all, _level, _is_show, _create_time, 
+    _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.AreaActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_area_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_area_activity
+    where _id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_area_activity
+    where _id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.AreaActivityExample" >
+    delete from ${tablePrefix}_area_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.AreaActivity" >
+    insert into ${tablePrefix}_area_activity (_id, _customer_Id, _customer_type, 
+      _activity_id, _is_all, _level, 
+      _is_show, _create_time, _update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{customerType,jdbcType=INTEGER}, 
+      #{activityId,jdbcType=INTEGER}, #{isAll,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, 
+      #{isShow,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.AreaActivity" >
+    insert into ${tablePrefix}_area_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="customerId != null" >
+        _customer_Id,
+      </if>
+      <if test="customerType != null" >
+        _customer_type,
+      </if>
+      <if test="activityId != null" >
+        _activity_id,
+      </if>
+      <if test="isAll != null" >
+        _is_all,
+      </if>
+      <if test="level != null" >
+        _level,
+      </if>
+      <if test="isShow != null" >
+        _is_show,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="isAll != null" >
+        #{isAll,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.AreaActivityExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_area_activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_area_activity
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        _customer_Id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerType != null" >
+        _customer_type = #{record.customerType,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        _activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAll != null" >
+        _is_all = #{record.isAll,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null" >
+        _level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShow != null" >
+        _is_show = #{record.isShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_area_activity
+    set _id = #{record.id,jdbcType=INTEGER},
+      _customer_Id = #{record.customerId,jdbcType=INTEGER},
+      _customer_type = #{record.customerType,jdbcType=INTEGER},
+      _activity_id = #{record.activityId,jdbcType=INTEGER},
+      _is_all = #{record.isAll,jdbcType=INTEGER},
+      _level = #{record.level,jdbcType=INTEGER},
+      _is_show = #{record.isShow,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.AreaActivity" >
+    update ${tablePrefix}_area_activity
+    <set >
+      <if test="customerId != null" >
+        _customer_Id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerType != null" >
+        _customer_type = #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        _activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="isAll != null" >
+        _is_all = #{isAll,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        _level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="isShow != null" >
+        _is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.AreaActivity" >
+    update ${tablePrefix}_area_activity
+    set _customer_Id = #{customerId,jdbcType=INTEGER},
+      _customer_type = #{customerType,jdbcType=INTEGER},
+      _activity_id = #{activityId,jdbcType=INTEGER},
+      _is_all = #{isAll,jdbcType=INTEGER},
+      _level = #{level,jdbcType=INTEGER},
+      _is_show = #{isShow,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

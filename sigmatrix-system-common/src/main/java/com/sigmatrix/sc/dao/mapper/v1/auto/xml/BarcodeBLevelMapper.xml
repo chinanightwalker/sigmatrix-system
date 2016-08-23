@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.BarcodeBLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.BarcodeBLevel" >
+    <id column="_encrypt_barcode_b_level" property="encryptBarcodeBLevel" jdbcType="VARCHAR" />
+    <result column="_product_id" property="productId" jdbcType="INTEGER" />
+    <result column="_customer_Id" property="customerId" jdbcType="INTEGER" />
+    <result column="_customer_type" property="customerType" jdbcType="INTEGER" />
+    <result column="_last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="_enterprise_id" property="enterpriseId" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_activate_status" property="activateStatus" jdbcType="INTEGER" />
+    <result column="_is_status" property="isStatus" jdbcType="INTEGER" />
+    <result column="_barcode_a_level_number" property="barcodeALevelNumber" jdbcType="INTEGER" />
+    <result column="_packing_time" property="packingTime" jdbcType="TIMESTAMP" />
+    <result column="_out_time" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="_warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _encrypt_barcode_b_level, _product_id, _customer_Id, _customer_type, _last_update_time, 
+    _enterprise_id, _create_time, _activate_status, _is_status, _barcode_a_level_number, 
+    _packing_time, _out_time, _warehouse_id, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_b_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_b_level
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_barcode_b_level
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevelExample" >
+    delete from ${tablePrefix}_barcode_b_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevel" >
+    insert into ${tablePrefix}_barcode_b_level (_encrypt_barcode_b_level, _product_id, 
+      _customer_Id, _customer_type, _last_update_time, 
+      _enterprise_id, _create_time, _activate_status, 
+      _is_status, _barcode_a_level_number, _packing_time, 
+      _out_time, _warehouse_id, _update_time
+      )
+    values (#{encryptBarcodeBLevel,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{customerId,jdbcType=INTEGER}, #{customerType,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{enterpriseId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{activateStatus,jdbcType=INTEGER}, 
+      #{isStatus,jdbcType=INTEGER}, #{barcodeALevelNumber,jdbcType=INTEGER}, #{packingTime,jdbcType=TIMESTAMP}, 
+      #{outTime,jdbcType=TIMESTAMP}, #{warehouseId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevel" >
+    insert into ${tablePrefix}_barcode_b_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="encryptBarcodeBLevel != null" >
+        _encrypt_barcode_b_level,
+      </if>
+      <if test="productId != null" >
+        _product_id,
+      </if>
+      <if test="customerId != null" >
+        _customer_Id,
+      </if>
+      <if test="customerType != null" >
+        _customer_type,
+      </if>
+      <if test="lastUpdateTime != null" >
+        _last_update_time,
+      </if>
+      <if test="enterpriseId != null" >
+        _enterprise_id,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="activateStatus != null" >
+        _activate_status,
+      </if>
+      <if test="isStatus != null" >
+        _is_status,
+      </if>
+      <if test="barcodeALevelNumber != null" >
+        _barcode_a_level_number,
+      </if>
+      <if test="packingTime != null" >
+        _packing_time,
+      </if>
+      <if test="outTime != null" >
+        _out_time,
+      </if>
+      <if test="warehouseId != null" >
+        _warehouse_id,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="encryptBarcodeBLevel != null" >
+        #{encryptBarcodeBLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activateStatus != null" >
+        #{activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isStatus != null" >
+        #{isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeALevelNumber != null" >
+        #{barcodeALevelNumber,jdbcType=INTEGER},
+      </if>
+      <if test="packingTime != null" >
+        #{packingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevelExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_barcode_b_level
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_barcode_b_level
+    <set >
+      <if test="record.encryptBarcodeBLevel != null" >
+        _encrypt_barcode_b_level = #{record.encryptBarcodeBLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null" >
+        _product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null" >
+        _customer_Id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerType != null" >
+        _customer_type = #{record.customerType,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        _last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enterpriseId != null" >
+        _enterprise_id = #{record.enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activateStatus != null" >
+        _activate_status = #{record.activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.isStatus != null" >
+        _is_status = #{record.isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.barcodeALevelNumber != null" >
+        _barcode_a_level_number = #{record.barcodeALevelNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.packingTime != null" >
+        _packing_time = #{record.packingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outTime != null" >
+        _out_time = #{record.outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.warehouseId != null" >
+        _warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_barcode_b_level
+    set _encrypt_barcode_b_level = #{record.encryptBarcodeBLevel,jdbcType=VARCHAR},
+      _product_id = #{record.productId,jdbcType=INTEGER},
+      _customer_Id = #{record.customerId,jdbcType=INTEGER},
+      _customer_type = #{record.customerType,jdbcType=INTEGER},
+      _last_update_time = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      _enterprise_id = #{record.enterpriseId,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _activate_status = #{record.activateStatus,jdbcType=INTEGER},
+      _is_status = #{record.isStatus,jdbcType=INTEGER},
+      _barcode_a_level_number = #{record.barcodeALevelNumber,jdbcType=INTEGER},
+      _packing_time = #{record.packingTime,jdbcType=TIMESTAMP},
+      _out_time = #{record.outTime,jdbcType=TIMESTAMP},
+      _warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevel" >
+    update ${tablePrefix}_barcode_b_level
+    <set >
+      <if test="productId != null" >
+        _product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        _customer_Id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerType != null" >
+        _customer_type = #{customerType,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateTime != null" >
+        _last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterpriseId != null" >
+        _enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activateStatus != null" >
+        _activate_status = #{activateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isStatus != null" >
+        _is_status = #{isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeALevelNumber != null" >
+        _barcode_a_level_number = #{barcodeALevelNumber,jdbcType=INTEGER},
+      </if>
+      <if test="packingTime != null" >
+        _packing_time = #{packingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        _out_time = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseId != null" >
+        _warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.BarcodeBLevel" >
+    update ${tablePrefix}_barcode_b_level
+    set _product_id = #{productId,jdbcType=INTEGER},
+      _customer_Id = #{customerId,jdbcType=INTEGER},
+      _customer_type = #{customerType,jdbcType=INTEGER},
+      _last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      _enterprise_id = #{enterpriseId,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _activate_status = #{activateStatus,jdbcType=INTEGER},
+      _is_status = #{isStatus,jdbcType=INTEGER},
+      _barcode_a_level_number = #{barcodeALevelNumber,jdbcType=INTEGER},
+      _packing_time = #{packingTime,jdbcType=TIMESTAMP},
+      _out_time = #{outTime,jdbcType=TIMESTAMP},
+      _warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </update>
+</mapper>

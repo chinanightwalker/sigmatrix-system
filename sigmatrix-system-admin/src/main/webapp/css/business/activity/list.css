@@ -1,0 +1,50 @@
+body {
+	font-family: '微软雅黑';
+}
+
+body,div,table,tr,td,img {
+	margin: 0px;
+	padding: 0px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+	border: none;
+}
+
+a,button.input {
+	text-decoration: none;
+	outline: none;
+}
+
+.mwui-switch-btn {
+	width: 40px;
+	display: block;
+	padding: 2px;
+	background: #48dc6c;
+	overflow: hidden;
+	border-radius: 18px;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	margin: 0px auto;
+}
+
+.mwui-switch-btn span {
+	width: 20px;
+	height: 20px;
+	display: inline;
+	float: right;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.mwui-switch-btn span.on {
+	float: left;
+}

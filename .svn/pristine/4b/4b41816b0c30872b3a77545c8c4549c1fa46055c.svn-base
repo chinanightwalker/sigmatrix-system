@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.BarcodePrizeConsumerMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumer" >
+    <id column="_prize_order_id" property="prizeOrderId" jdbcType="VARCHAR" />
+    <result column="_barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="_input_code" property="inputCode" jdbcType="VARCHAR" />
+    <result column="_activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="_prize_amount" property="prizeAmount" jdbcType="INTEGER" />
+    <result column="_prize_integration" property="prizeIntegration" jdbcType="INTEGER" />
+    <result column="_product_id" property="productId" jdbcType="INTEGER" />
+    <result column="_prize_type" property="prizeType" jdbcType="INTEGER" />
+    <result column="_is_type" property="isType" jdbcType="INTEGER" />
+    <result column="_user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="_open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="_user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="_is_temp_id" property="isTempId" jdbcType="INTEGER" />
+    <result column="_is_status" property="isStatus" jdbcType="INTEGER" />
+    <result column="_is_prize" property="isPrize" jdbcType="INTEGER" />
+    <result column="_prize_id" property="prizeId" jdbcType="INTEGER" />
+    <result column="_prize_name" property="prizeName" jdbcType="VARCHAR" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_accept_time" property="acceptTime" jdbcType="TIMESTAMP" />
+    <result column="_shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="_get_time" property="getTime" jdbcType="TIMESTAMP" />
+    <result column="_get_address" property="getAddress" jdbcType="VARCHAR" />
+    <result column="_get_type" property="getType" jdbcType="INTEGER" />
+    <result column="_is_first_get" property="isFirstGet" jdbcType="INTEGER" />
+    <result column="_name" property="name" jdbcType="VARCHAR" />
+    <result column="_zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="_phone" property="phone" jdbcType="VARCHAR" />
+    <result column="_address" property="address" jdbcType="VARCHAR" />
+    <result column="_post_status" property="postStatus" jdbcType="INTEGER" />
+    <result column="_courier_number" property="courierNumber" jdbcType="VARCHAR" />
+    <result column="_open_id_pay" property="openIdPay" jdbcType="VARCHAR" />
+    <result column="_operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+    <result column="_sync_status" property="syncStatus" jdbcType="INTEGER" />
+    <result column="_sync_period" property="syncPeriod" jdbcType="VARCHAR" />
+    <result column="_red_bag_type" property="redBagType" jdbcType="INTEGER" />
+    <result column="_min_amount" property="minAmount" jdbcType="INTEGER" />
+    <result column="_max_amount" property="maxAmount" jdbcType="INTEGER" />
+    <result column="_first_min_amount" property="firstMinAmount" jdbcType="INTEGER" />
+    <result column="_prize_forcibly_count" property="prizeForciblyCount" jdbcType="INTEGER" />
+    <result column="_prize_forcibly_amount" property="prizeForciblyAmount" jdbcType="INTEGER" />
+    <result column="_prize_forcibly_lucky_count" property="prizeForciblyLuckyCount" jdbcType="INTEGER" />
+    <result column="_is_active" property="isActive" jdbcType="INTEGER" />
+    <result column="_dealer_id" property="dealerId" jdbcType="INTEGER" />
+    <result column="_cash_prize_id" property="cashPrizeId" jdbcType="INTEGER" />
+    <result column="_cash_prize_amount" property="cashPrizeAmount" jdbcType="INTEGER" />
+    <result column="_is_share_success" property="isShareSuccess" jdbcType="INTEGER" />
+    <result column="_total_amount" property="totalAmount" jdbcType="INTEGER" />
+    <result column="_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _prize_order_id, _barcode, _input_code, _activity_id, _prize_amount, _prize_integration, 
+    _product_id, _prize_type, _is_type, _user_id, _open_id, _user_phone, _is_temp_id, 
+    _is_status, _is_prize, _prize_id, _prize_name, _create_time, _accept_time, _shop_id, 
+    _get_time, _get_address, _get_type, _is_first_get, _name, _zip_code, _phone, _address, 
+    _post_status, _courier_number, _open_id_pay, _operate_time, _sync_status, _sync_period, 
+    _red_bag_type, _min_amount, _max_amount, _first_min_amount, _prize_forcibly_count, 
+    _prize_forcibly_amount, _prize_forcibly_lucky_count, _is_active, _dealer_id, _cash_prize_id, 
+    _cash_prize_amount, _is_share_success, _total_amount, _update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_prize_consumer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_barcode_prize_consumer
+    where _prize_order_id = #{prizeOrderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_barcode_prize_consumer
+    where _prize_order_id = #{prizeOrderId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumerExample" >
+    delete from ${tablePrefix}_barcode_prize_consumer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumer" >
+    insert into ${tablePrefix}_barcode_prize_consumer (_prize_order_id, _barcode, _input_code, 
+      _activity_id, _prize_amount, _prize_integration, 
+      _product_id, _prize_type, _is_type, 
+      _user_id, _open_id, _user_phone, 
+      _is_temp_id, _is_status, _is_prize, 
+      _prize_id, _prize_name, _create_time, 
+      _accept_time, _shop_id, _get_time, 
+      _get_address, _get_type, _is_first_get, 
+      _name, _zip_code, _phone, 
+      _address, _post_status, _courier_number, 
+      _open_id_pay, _operate_time, _sync_status, 
+      _sync_period, _red_bag_type, _min_amount, 
+      _max_amount, _first_min_amount, _prize_forcibly_count, 
+      _prize_forcibly_amount, _prize_forcibly_lucky_count, 
+      _is_active, _dealer_id, _cash_prize_id, 
+      _cash_prize_amount, _is_share_success, _total_amount, 
+      _update_time)
+    values (#{prizeOrderId,jdbcType=VARCHAR}, #{barcode,jdbcType=VARCHAR}, #{inputCode,jdbcType=VARCHAR}, 
+      #{activityId,jdbcType=INTEGER}, #{prizeAmount,jdbcType=INTEGER}, #{prizeIntegration,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{prizeType,jdbcType=INTEGER}, #{isType,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{isTempId,jdbcType=INTEGER}, #{isStatus,jdbcType=INTEGER}, #{isPrize,jdbcType=INTEGER}, 
+      #{prizeId,jdbcType=INTEGER}, #{prizeName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{acceptTime,jdbcType=TIMESTAMP}, #{shopId,jdbcType=INTEGER}, #{getTime,jdbcType=TIMESTAMP}, 
+      #{getAddress,jdbcType=VARCHAR}, #{getType,jdbcType=INTEGER}, #{isFirstGet,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{postStatus,jdbcType=INTEGER}, #{courierNumber,jdbcType=VARCHAR}, 
+      #{openIdPay,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, #{syncStatus,jdbcType=INTEGER}, 
+      #{syncPeriod,jdbcType=VARCHAR}, #{redBagType,jdbcType=INTEGER}, #{minAmount,jdbcType=INTEGER}, 
+      #{maxAmount,jdbcType=INTEGER}, #{firstMinAmount,jdbcType=INTEGER}, #{prizeForciblyCount,jdbcType=INTEGER}, 
+      #{prizeForciblyAmount,jdbcType=INTEGER}, #{prizeForciblyLuckyCount,jdbcType=INTEGER}, 
+      #{isActive,jdbcType=INTEGER}, #{dealerId,jdbcType=INTEGER}, #{cashPrizeId,jdbcType=INTEGER}, 
+      #{cashPrizeAmount,jdbcType=INTEGER}, #{isShareSuccess,jdbcType=INTEGER}, #{totalAmount,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumer" >
+    insert into ${tablePrefix}_barcode_prize_consumer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prizeOrderId != null" >
+        _prize_order_id,
+      </if>
+      <if test="barcode != null" >
+        _barcode,
+      </if>
+      <if test="inputCode != null" >
+        _input_code,
+      </if>
+      <if test="activityId != null" >
+        _activity_id,
+      </if>
+      <if test="prizeAmount != null" >
+        _prize_amount,
+      </if>
+      <if test="prizeIntegration != null" >
+        _prize_integration,
+      </if>
+      <if test="productId != null" >
+        _product_id,
+      </if>
+      <if test="prizeType != null" >
+        _prize_type,
+      </if>
+      <if test="isType != null" >
+        _is_type,
+      </if>
+      <if test="userId != null" >
+        _user_id,
+      </if>
+      <if test="openId != null" >
+        _open_id,
+      </if>
+      <if test="userPhone != null" >
+        _user_phone,
+      </if>
+      <if test="isTempId != null" >
+        _is_temp_id,
+      </if>
+      <if test="isStatus != null" >
+        _is_status,
+      </if>
+      <if test="isPrize != null" >
+        _is_prize,
+      </if>
+      <if test="prizeId != null" >
+        _prize_id,
+      </if>
+      <if test="prizeName != null" >
+        _prize_name,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="acceptTime != null" >
+        _accept_time,
+      </if>
+      <if test="shopId != null" >
+        _shop_id,
+      </if>
+      <if test="getTime != null" >
+        _get_time,
+      </if>
+      <if test="getAddress != null" >
+        _get_address,
+      </if>
+      <if test="getType != null" >
+        _get_type,
+      </if>
+      <if test="isFirstGet != null" >
+        _is_first_get,
+      </if>
+      <if test="name != null" >
+        _name,
+      </if>
+      <if test="zipCode != null" >
+        _zip_code,
+      </if>
+      <if test="phone != null" >
+        _phone,
+      </if>
+      <if test="address != null" >
+        _address,
+      </if>
+      <if test="postStatus != null" >
+        _post_status,
+      </if>
+      <if test="courierNumber != null" >
+        _courier_number,
+      </if>
+      <if test="openIdPay != null" >
+        _open_id_pay,
+      </if>
+      <if test="operateTime != null" >
+        _operate_time,
+      </if>
+      <if test="syncStatus != null" >
+        _sync_status,
+      </if>
+      <if test="syncPeriod != null" >
+        _sync_period,
+      </if>
+      <if test="redBagType != null" >
+        _red_bag_type,
+      </if>
+      <if test="minAmount != null" >
+        _min_amount,
+      </if>
+      <if test="maxAmount != null" >
+        _max_amount,
+      </if>
+      <if test="firstMinAmount != null" >
+        _first_min_amount,
+      </if>
+      <if test="prizeForciblyCount != null" >
+        _prize_forcibly_count,
+      </if>
+      <if test="prizeForciblyAmount != null" >
+        _prize_forcibly_amount,
+      </if>
+      <if test="prizeForciblyLuckyCount != null" >
+        _prize_forcibly_lucky_count,
+      </if>
+      <if test="isActive != null" >
+        _is_active,
+      </if>
+      <if test="dealerId != null" >
+        _dealer_id,
+      </if>
+      <if test="cashPrizeId != null" >
+        _cash_prize_id,
+      </if>
+      <if test="cashPrizeAmount != null" >
+        _cash_prize_amount,
+      </if>
+      <if test="isShareSuccess != null" >
+        _is_share_success,
+      </if>
+      <if test="totalAmount != null" >
+        _total_amount,
+      </if>
+      <if test="updateTime != null" >
+        _update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prizeOrderId != null" >
+        #{prizeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeAmount != null" >
+        #{prizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeIntegration != null" >
+        #{prizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeType != null" >
+        #{prizeType,jdbcType=INTEGER},
+      </if>
+      <if test="isType != null" >
+        #{isType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isTempId != null" >
+        #{isTempId,jdbcType=INTEGER},
+      </if>
+      <if test="isStatus != null" >
+        #{isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isPrize != null" >
+        #{isPrize,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null" >
+        #{prizeId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeName != null" >
+        #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptTime != null" >
+        #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="getTime != null" >
+        #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="getAddress != null" >
+        #{getAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="getType != null" >
+        #{getType,jdbcType=INTEGER},
+      </if>
+      <if test="isFirstGet != null" >
+        #{isFirstGet,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postStatus != null" >
+        #{postStatus,jdbcType=INTEGER},
+      </if>
+      <if test="courierNumber != null" >
+        #{courierNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openIdPay != null" >
+        #{openIdPay,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncStatus != null" >
+        #{syncStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syncPeriod != null" >
+        #{syncPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="redBagType != null" >
+        #{redBagType,jdbcType=INTEGER},
+      </if>
+      <if test="minAmount != null" >
+        #{minAmount,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null" >
+        #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="firstMinAmount != null" >
+        #{firstMinAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyCount != null" >
+        #{prizeForciblyCount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyAmount != null" >
+        #{prizeForciblyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyLuckyCount != null" >
+        #{prizeForciblyLuckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null" >
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null" >
+        #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="cashPrizeId != null" >
+        #{cashPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="cashPrizeAmount != null" >
+        #{cashPrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="isShareSuccess != null" >
+        #{isShareSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumerExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_barcode_prize_consumer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_barcode_prize_consumer
+    <set >
+      <if test="record.prizeOrderId != null" >
+        _prize_order_id = #{record.prizeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barcode != null" >
+        _barcode = #{record.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputCode != null" >
+        _input_code = #{record.inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        _activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeAmount != null" >
+        _prize_amount = #{record.prizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeIntegration != null" >
+        _prize_integration = #{record.prizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null" >
+        _product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeType != null" >
+        _prize_type = #{record.prizeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isType != null" >
+        _is_type = #{record.isType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        _user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null" >
+        _open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPhone != null" >
+        _user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTempId != null" >
+        _is_temp_id = #{record.isTempId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isStatus != null" >
+        _is_status = #{record.isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.isPrize != null" >
+        _is_prize = #{record.isPrize,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeId != null" >
+        _prize_id = #{record.prizeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeName != null" >
+        _prize_name = #{record.prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.acceptTime != null" >
+        _accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopId != null" >
+        _shop_id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.getTime != null" >
+        _get_time = #{record.getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.getAddress != null" >
+        _get_address = #{record.getAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.getType != null" >
+        _get_type = #{record.getType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isFirstGet != null" >
+        _is_first_get = #{record.isFirstGet,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        _name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        _zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        _phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        _address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postStatus != null" >
+        _post_status = #{record.postStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.courierNumber != null" >
+        _courier_number = #{record.courierNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openIdPay != null" >
+        _open_id_pay = #{record.openIdPay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateTime != null" >
+        _operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syncStatus != null" >
+        _sync_status = #{record.syncStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.syncPeriod != null" >
+        _sync_period = #{record.syncPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redBagType != null" >
+        _red_bag_type = #{record.redBagType,jdbcType=INTEGER},
+      </if>
+      <if test="record.minAmount != null" >
+        _min_amount = #{record.minAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxAmount != null" >
+        _max_amount = #{record.maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstMinAmount != null" >
+        _first_min_amount = #{record.firstMinAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeForciblyCount != null" >
+        _prize_forcibly_count = #{record.prizeForciblyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeForciblyAmount != null" >
+        _prize_forcibly_amount = #{record.prizeForciblyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.prizeForciblyLuckyCount != null" >
+        _prize_forcibly_lucky_count = #{record.prizeForciblyLuckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.isActive != null" >
+        _is_active = #{record.isActive,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealerId != null" >
+        _dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashPrizeId != null" >
+        _cash_prize_id = #{record.cashPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashPrizeAmount != null" >
+        _cash_prize_amount = #{record.cashPrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShareSuccess != null" >
+        _is_share_success = #{record.isShareSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalAmount != null" >
+        _total_amount = #{record.totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        _update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_barcode_prize_consumer
+    set _prize_order_id = #{record.prizeOrderId,jdbcType=VARCHAR},
+      _barcode = #{record.barcode,jdbcType=VARCHAR},
+      _input_code = #{record.inputCode,jdbcType=VARCHAR},
+      _activity_id = #{record.activityId,jdbcType=INTEGER},
+      _prize_amount = #{record.prizeAmount,jdbcType=INTEGER},
+      _prize_integration = #{record.prizeIntegration,jdbcType=INTEGER},
+      _product_id = #{record.productId,jdbcType=INTEGER},
+      _prize_type = #{record.prizeType,jdbcType=INTEGER},
+      _is_type = #{record.isType,jdbcType=INTEGER},
+      _user_id = #{record.userId,jdbcType=VARCHAR},
+      _open_id = #{record.openId,jdbcType=VARCHAR},
+      _user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      _is_temp_id = #{record.isTempId,jdbcType=INTEGER},
+      _is_status = #{record.isStatus,jdbcType=INTEGER},
+      _is_prize = #{record.isPrize,jdbcType=INTEGER},
+      _prize_id = #{record.prizeId,jdbcType=INTEGER},
+      _prize_name = #{record.prizeName,jdbcType=VARCHAR},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},
+      _shop_id = #{record.shopId,jdbcType=INTEGER},
+      _get_time = #{record.getTime,jdbcType=TIMESTAMP},
+      _get_address = #{record.getAddress,jdbcType=VARCHAR},
+      _get_type = #{record.getType,jdbcType=INTEGER},
+      _is_first_get = #{record.isFirstGet,jdbcType=INTEGER},
+      _name = #{record.name,jdbcType=VARCHAR},
+      _zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      _phone = #{record.phone,jdbcType=VARCHAR},
+      _address = #{record.address,jdbcType=VARCHAR},
+      _post_status = #{record.postStatus,jdbcType=INTEGER},
+      _courier_number = #{record.courierNumber,jdbcType=VARCHAR},
+      _open_id_pay = #{record.openIdPay,jdbcType=VARCHAR},
+      _operate_time = #{record.operateTime,jdbcType=TIMESTAMP},
+      _sync_status = #{record.syncStatus,jdbcType=INTEGER},
+      _sync_period = #{record.syncPeriod,jdbcType=VARCHAR},
+      _red_bag_type = #{record.redBagType,jdbcType=INTEGER},
+      _min_amount = #{record.minAmount,jdbcType=INTEGER},
+      _max_amount = #{record.maxAmount,jdbcType=INTEGER},
+      _first_min_amount = #{record.firstMinAmount,jdbcType=INTEGER},
+      _prize_forcibly_count = #{record.prizeForciblyCount,jdbcType=INTEGER},
+      _prize_forcibly_amount = #{record.prizeForciblyAmount,jdbcType=INTEGER},
+      _prize_forcibly_lucky_count = #{record.prizeForciblyLuckyCount,jdbcType=INTEGER},
+      _is_active = #{record.isActive,jdbcType=INTEGER},
+      _dealer_id = #{record.dealerId,jdbcType=INTEGER},
+      _cash_prize_id = #{record.cashPrizeId,jdbcType=INTEGER},
+      _cash_prize_amount = #{record.cashPrizeAmount,jdbcType=INTEGER},
+      _is_share_success = #{record.isShareSuccess,jdbcType=INTEGER},
+      _total_amount = #{record.totalAmount,jdbcType=INTEGER},
+      _update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumer" >
+    update ${tablePrefix}_barcode_prize_consumer
+    <set >
+      <if test="barcode != null" >
+        _barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="inputCode != null" >
+        _input_code = #{inputCode,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        _activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeAmount != null" >
+        _prize_amount = #{prizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeIntegration != null" >
+        _prize_integration = #{prizeIntegration,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        _product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeType != null" >
+        _prize_type = #{prizeType,jdbcType=INTEGER},
+      </if>
+      <if test="isType != null" >
+        _is_type = #{isType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        _user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        _open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null" >
+        _user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="isTempId != null" >
+        _is_temp_id = #{isTempId,jdbcType=INTEGER},
+      </if>
+      <if test="isStatus != null" >
+        _is_status = #{isStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isPrize != null" >
+        _is_prize = #{isPrize,jdbcType=INTEGER},
+      </if>
+      <if test="prizeId != null" >
+        _prize_id = #{prizeId,jdbcType=INTEGER},
+      </if>
+      <if test="prizeName != null" >
+        _prize_name = #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptTime != null" >
+        _accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        _shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="getTime != null" >
+        _get_time = #{getTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="getAddress != null" >
+        _get_address = #{getAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="getType != null" >
+        _get_type = #{getType,jdbcType=INTEGER},
+      </if>
+      <if test="isFirstGet != null" >
+        _is_first_get = #{isFirstGet,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        _name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        _zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        _phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        _address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postStatus != null" >
+        _post_status = #{postStatus,jdbcType=INTEGER},
+      </if>
+      <if test="courierNumber != null" >
+        _courier_number = #{courierNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openIdPay != null" >
+        _open_id_pay = #{openIdPay,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        _operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncStatus != null" >
+        _sync_status = #{syncStatus,jdbcType=INTEGER},
+      </if>
+      <if test="syncPeriod != null" >
+        _sync_period = #{syncPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="redBagType != null" >
+        _red_bag_type = #{redBagType,jdbcType=INTEGER},
+      </if>
+      <if test="minAmount != null" >
+        _min_amount = #{minAmount,jdbcType=INTEGER},
+      </if>
+      <if test="maxAmount != null" >
+        _max_amount = #{maxAmount,jdbcType=INTEGER},
+      </if>
+      <if test="firstMinAmount != null" >
+        _first_min_amount = #{firstMinAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyCount != null" >
+        _prize_forcibly_count = #{prizeForciblyCount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyAmount != null" >
+        _prize_forcibly_amount = #{prizeForciblyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="prizeForciblyLuckyCount != null" >
+        _prize_forcibly_lucky_count = #{prizeForciblyLuckyCount,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null" >
+        _is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="dealerId != null" >
+        _dealer_id = #{dealerId,jdbcType=INTEGER},
+      </if>
+      <if test="cashPrizeId != null" >
+        _cash_prize_id = #{cashPrizeId,jdbcType=INTEGER},
+      </if>
+      <if test="cashPrizeAmount != null" >
+        _cash_prize_amount = #{cashPrizeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="isShareSuccess != null" >
+        _is_share_success = #{isShareSuccess,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null" >
+        _total_amount = #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        _update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where _prize_order_id = #{prizeOrderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.BarcodePrizeConsumer" >
+    update ${tablePrefix}_barcode_prize_consumer
+    set _barcode = #{barcode,jdbcType=VARCHAR},
+      _input_code = #{inputCode,jdbcType=VARCHAR},
+      _activity_id = #{activityId,jdbcType=INTEGER},
+      _prize_amount = #{prizeAmount,jdbcType=INTEGER},
+      _prize_integration = #{prizeIntegration,jdbcType=INTEGER},
+      _product_id = #{productId,jdbcType=INTEGER},
+      _prize_type = #{prizeType,jdbcType=INTEGER},
+      _is_type = #{isType,jdbcType=INTEGER},
+      _user_id = #{userId,jdbcType=VARCHAR},
+      _open_id = #{openId,jdbcType=VARCHAR},
+      _user_phone = #{userPhone,jdbcType=VARCHAR},
+      _is_temp_id = #{isTempId,jdbcType=INTEGER},
+      _is_status = #{isStatus,jdbcType=INTEGER},
+      _is_prize = #{isPrize,jdbcType=INTEGER},
+      _prize_id = #{prizeId,jdbcType=INTEGER},
+      _prize_name = #{prizeName,jdbcType=VARCHAR},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      _shop_id = #{shopId,jdbcType=INTEGER},
+      _get_time = #{getTime,jdbcType=TIMESTAMP},
+      _get_address = #{getAddress,jdbcType=VARCHAR},
+      _get_type = #{getType,jdbcType=INTEGER},
+      _is_first_get = #{isFirstGet,jdbcType=INTEGER},
+      _name = #{name,jdbcType=VARCHAR},
+      _zip_code = #{zipCode,jdbcType=VARCHAR},
+      _phone = #{phone,jdbcType=VARCHAR},
+      _address = #{address,jdbcType=VARCHAR},
+      _post_status = #{postStatus,jdbcType=INTEGER},
+      _courier_number = #{courierNumber,jdbcType=VARCHAR},
+      _open_id_pay = #{openIdPay,jdbcType=VARCHAR},
+      _operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      _sync_status = #{syncStatus,jdbcType=INTEGER},
+      _sync_period = #{syncPeriod,jdbcType=VARCHAR},
+      _red_bag_type = #{redBagType,jdbcType=INTEGER},
+      _min_amount = #{minAmount,jdbcType=INTEGER},
+      _max_amount = #{maxAmount,jdbcType=INTEGER},
+      _first_min_amount = #{firstMinAmount,jdbcType=INTEGER},
+      _prize_forcibly_count = #{prizeForciblyCount,jdbcType=INTEGER},
+      _prize_forcibly_amount = #{prizeForciblyAmount,jdbcType=INTEGER},
+      _prize_forcibly_lucky_count = #{prizeForciblyLuckyCount,jdbcType=INTEGER},
+      _is_active = #{isActive,jdbcType=INTEGER},
+      _dealer_id = #{dealerId,jdbcType=INTEGER},
+      _cash_prize_id = #{cashPrizeId,jdbcType=INTEGER},
+      _cash_prize_amount = #{cashPrizeAmount,jdbcType=INTEGER},
+      _is_share_success = #{isShareSuccess,jdbcType=INTEGER},
+      _total_amount = #{totalAmount,jdbcType=INTEGER},
+      _update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where _prize_order_id = #{prizeOrderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

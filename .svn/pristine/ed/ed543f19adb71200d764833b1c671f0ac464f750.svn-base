@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.BoxScanCountMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.BoxScanCount" >
+    <id column="_encrypt_barcode_b_level" property="encryptBarcodeBLevel" jdbcType="VARCHAR" />
+    <result column="_scan_count" property="scanCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _encrypt_barcode_b_level, _scan_count
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_box_scan_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_box_scan_count
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_box_scan_count
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCountExample" >
+    delete from ${tablePrefix}_box_scan_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCount" >
+    insert into ${tablePrefix}_box_scan_count (_encrypt_barcode_b_level, _scan_count)
+    values (#{encryptBarcodeBLevel,jdbcType=VARCHAR}, #{scanCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCount" >
+    insert into ${tablePrefix}_box_scan_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="encryptBarcodeBLevel != null" >
+        _encrypt_barcode_b_level,
+      </if>
+      <if test="scanCount != null" >
+        _scan_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="encryptBarcodeBLevel != null" >
+        #{encryptBarcodeBLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="scanCount != null" >
+        #{scanCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCountExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_box_scan_count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_box_scan_count
+    <set >
+      <if test="record.encryptBarcodeBLevel != null" >
+        _encrypt_barcode_b_level = #{record.encryptBarcodeBLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scanCount != null" >
+        _scan_count = #{record.scanCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_box_scan_count
+    set _encrypt_barcode_b_level = #{record.encryptBarcodeBLevel,jdbcType=VARCHAR},
+      _scan_count = #{record.scanCount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCount" >
+    update ${tablePrefix}_box_scan_count
+    <set >
+      <if test="scanCount != null" >
+        _scan_count = #{scanCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.BoxScanCount" >
+    update ${tablePrefix}_box_scan_count
+    set _scan_count = #{scanCount,jdbcType=INTEGER}
+    where _encrypt_barcode_b_level = #{encryptBarcodeBLevel,jdbcType=VARCHAR}
+  </update>
+</mapper>

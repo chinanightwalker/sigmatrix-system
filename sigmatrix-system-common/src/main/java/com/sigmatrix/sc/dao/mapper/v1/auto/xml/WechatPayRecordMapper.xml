@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sigmatrix.sc.dao.mapper.v1.auto.WechatPayRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.sigmatrix.sc.entity.v1.WechatPayRecord" >
+    <id column="_id" property="id" jdbcType="INTEGER" />
+    <result column="_enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+    <result column="_open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="_amount" property="amount" jdbcType="INTEGER" />
+    <result column="_result" property="result" jdbcType="INTEGER" />
+    <result column="_create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="_mch_billno" property="mchBillno" jdbcType="VARCHAR" />
+    <result column="_payment_no" property="paymentNo" jdbcType="VARCHAR" />
+    <result column="_payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="_result_message" property="resultMessage" jdbcType="VARCHAR" />
+    <result column="_wx_err_code" property="wxErrCode" jdbcType="VARCHAR" />
+    <result column="_wx_err_msg" property="wxErrMsg" jdbcType="VARCHAR" />
+    <result column="_order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="_mchid" property="mchid" jdbcType="VARCHAR" />
+    <result column="_mch_appid" property="mchAppid" jdbcType="VARCHAR" />
+    <result column="_accept_time" property="acceptTime" jdbcType="TIMESTAMP" />
+    <result column="_pay_count" property="payCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    _id, _enterprise_id, _open_id, _amount, _result, _create_time, _mch_billno, _payment_no, 
+    _payment_time, _result_message, _wx_err_code, _wx_err_msg, _order_id, _mchid, _mch_appid, 
+    _accept_time, _pay_count
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_wechat_pay_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from ${tablePrefix}_wechat_pay_record
+    where _id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from ${tablePrefix}_wechat_pay_record
+    where _id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecordExample" >
+    delete from ${tablePrefix}_wechat_pay_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecord" >
+    insert into ${tablePrefix}_wechat_pay_record (_id, _enterprise_id, _open_id, 
+      _amount, _result, _create_time, 
+      _mch_billno, _payment_no, _payment_time, 
+      _result_message, _wx_err_code, _wx_err_msg, 
+      _order_id, _mchid, _mch_appid, 
+      _accept_time, _pay_count)
+    values (#{id,jdbcType=INTEGER}, #{enterpriseId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{result,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{mchBillno,jdbcType=VARCHAR}, #{paymentNo,jdbcType=VARCHAR}, #{paymentTime,jdbcType=TIMESTAMP}, 
+      #{resultMessage,jdbcType=VARCHAR}, #{wxErrCode,jdbcType=VARCHAR}, #{wxErrMsg,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{mchid,jdbcType=VARCHAR}, #{mchAppid,jdbcType=VARCHAR}, 
+      #{acceptTime,jdbcType=TIMESTAMP}, #{payCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecord" >
+    insert into ${tablePrefix}_wechat_pay_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        _id,
+      </if>
+      <if test="enterpriseId != null" >
+        _enterprise_id,
+      </if>
+      <if test="openId != null" >
+        _open_id,
+      </if>
+      <if test="amount != null" >
+        _amount,
+      </if>
+      <if test="result != null" >
+        _result,
+      </if>
+      <if test="createTime != null" >
+        _create_time,
+      </if>
+      <if test="mchBillno != null" >
+        _mch_billno,
+      </if>
+      <if test="paymentNo != null" >
+        _payment_no,
+      </if>
+      <if test="paymentTime != null" >
+        _payment_time,
+      </if>
+      <if test="resultMessage != null" >
+        _result_message,
+      </if>
+      <if test="wxErrCode != null" >
+        _wx_err_code,
+      </if>
+      <if test="wxErrMsg != null" >
+        _wx_err_msg,
+      </if>
+      <if test="orderId != null" >
+        _order_id,
+      </if>
+      <if test="mchid != null" >
+        _mchid,
+      </if>
+      <if test="mchAppid != null" >
+        _mch_appid,
+      </if>
+      <if test="acceptTime != null" >
+        _accept_time,
+      </if>
+      <if test="payCount != null" >
+        _pay_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mchBillno != null" >
+        #{mchBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentNo != null" >
+        #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resultMessage != null" >
+        #{resultMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxErrCode != null" >
+        #{wxErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wxErrMsg != null" >
+        #{wxErrMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchid != null" >
+        #{mchid,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAppid != null" >
+        #{mchAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptTime != null" >
+        #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payCount != null" >
+        #{payCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecordExample" resultType="java.lang.Integer" >
+    select count(*) from ${tablePrefix}_wechat_pay_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ${record.tablePrefix}_wechat_pay_record
+    <set >
+      <if test="record.id != null" >
+        _id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.enterpriseId != null" >
+        _enterprise_id = #{record.enterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null" >
+        _open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        _amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.result != null" >
+        _result = #{record.result,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mchBillno != null" >
+        _mch_billno = #{record.mchBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentNo != null" >
+        _payment_no = #{record.paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentTime != null" >
+        _payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.resultMessage != null" >
+        _result_message = #{record.resultMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxErrCode != null" >
+        _wx_err_code = #{record.wxErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxErrMsg != null" >
+        _wx_err_msg = #{record.wxErrMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        _order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mchid != null" >
+        _mchid = #{record.mchid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mchAppid != null" >
+        _mch_appid = #{record.mchAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptTime != null" >
+        _accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payCount != null" >
+        _pay_count = #{record.payCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ${record.tablePrefix}_wechat_pay_record
+    set _id = #{record.id,jdbcType=INTEGER},
+      _enterprise_id = #{record.enterpriseId,jdbcType=VARCHAR},
+      _open_id = #{record.openId,jdbcType=VARCHAR},
+      _amount = #{record.amount,jdbcType=INTEGER},
+      _result = #{record.result,jdbcType=INTEGER},
+      _create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      _mch_billno = #{record.mchBillno,jdbcType=VARCHAR},
+      _payment_no = #{record.paymentNo,jdbcType=VARCHAR},
+      _payment_time = #{record.paymentTime,jdbcType=TIMESTAMP},
+      _result_message = #{record.resultMessage,jdbcType=VARCHAR},
+      _wx_err_code = #{record.wxErrCode,jdbcType=VARCHAR},
+      _wx_err_msg = #{record.wxErrMsg,jdbcType=VARCHAR},
+      _order_id = #{record.orderId,jdbcType=VARCHAR},
+      _mchid = #{record.mchid,jdbcType=VARCHAR},
+      _mch_appid = #{record.mchAppid,jdbcType=VARCHAR},
+      _accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},
+      _pay_count = #{record.payCount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecord" >
+    update ${tablePrefix}_wechat_pay_record
+    <set >
+      <if test="enterpriseId != null" >
+        _enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        _open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        _amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        _result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        _create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mchBillno != null" >
+        _mch_billno = #{mchBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentNo != null" >
+        _payment_no = #{paymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentTime != null" >
+        _payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resultMessage != null" >
+        _result_message = #{resultMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="wxErrCode != null" >
+        _wx_err_code = #{wxErrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wxErrMsg != null" >
+        _wx_err_msg = #{wxErrMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        _order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchid != null" >
+        _mchid = #{mchid,jdbcType=VARCHAR},
+      </if>
+      <if test="mchAppid != null" >
+        _mch_appid = #{mchAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptTime != null" >
+        _accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payCount != null" >
+        _pay_count = #{payCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sigmatrix.sc.entity.v1.WechatPayRecord" >
+    update ${tablePrefix}_wechat_pay_record
+    set _enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+      _open_id = #{openId,jdbcType=VARCHAR},
+      _amount = #{amount,jdbcType=INTEGER},
+      _result = #{result,jdbcType=INTEGER},
+      _create_time = #{createTime,jdbcType=TIMESTAMP},
+      _mch_billno = #{mchBillno,jdbcType=VARCHAR},
+      _payment_no = #{paymentNo,jdbcType=VARCHAR},
+      _payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      _result_message = #{resultMessage,jdbcType=VARCHAR},
+      _wx_err_code = #{wxErrCode,jdbcType=VARCHAR},
+      _wx_err_msg = #{wxErrMsg,jdbcType=VARCHAR},
+      _order_id = #{orderId,jdbcType=VARCHAR},
+      _mchid = #{mchid,jdbcType=VARCHAR},
+      _mch_appid = #{mchAppid,jdbcType=VARCHAR},
+      _accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+      _pay_count = #{payCount,jdbcType=INTEGER}
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

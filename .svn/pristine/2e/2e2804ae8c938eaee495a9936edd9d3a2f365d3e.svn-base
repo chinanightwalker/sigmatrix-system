@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+">
+
+<!-- 
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:conf/resources.properties</value>
+			</list>
+		</property>
+	</bean> -->
+	<bean id="publicConfigurer"
+		class="com.sigmatrix.sc.global.init.InitPublicPropertyConfigure">
+		<property name="initPropertiesFile">
+			<list>
+				<value>classpath:conf/resources.properties</value>
+			</list>
+		</property>
+	</bean>
+	<context:component-scan base-package="com.sigmatrix.sc.web" />
+
+	<mvc:annotation-driven
+		content-negotiation-manager="contentNegotiationManager" />
+
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="mediaTypes">
+			<map>
+				<entry key="xml" value="application/xml" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="favorPathExtension" value="false" />
+	</bean>
+	
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<!-- dwz的让其通过 -->
+	<mvc:resources location="/dwz/" mapping="/dwz/**" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="prefix" value="/WEB-INF/jsp/" /> -->
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean> 
+	<!-- 图片上传  -->
+	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+	    	<property name="maxUploadSize" value="10000000" />
+    </bean>   
+	
+	<!-- 控制器中用到shiro注解时需要 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	
+	<!-- 出现异常后跳转到指定的jsp页面的配置，后期再优化异常处理机制 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/WEB-INF/jsp/common/unauthorized</prop>
+			</props>
+		</property>
+	</bean> 
+</beans>
